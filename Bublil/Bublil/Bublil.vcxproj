@@ -19,10 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="code\logger.cpp" />
+    <ClCompile Include="code\appState.cpp" />
+    <ClCompile Include="code\loggerMessages.cpp" />
+    <ClCompile Include="code\loggerTextmanip.cpp" />
     <ClCompile Include="code\Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="code\appState.h" />
     <ClInclude Include="code\logger.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
