@@ -2,8 +2,8 @@
 
 
 
-AppState::AppState(Application* machine_p, AppState* next_p ):
-	machine(machine),next(next_p){}
+AppState::AppState(AppState* next_p, Application* machine_p ):
+	machine(machine_p),next(next_p){}
 
 AppState::~AppState()
 {

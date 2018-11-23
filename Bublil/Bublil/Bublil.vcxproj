@@ -25,6 +25,7 @@
     <ClCompile Include="code\Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="code\application.h" />
     <ClInclude Include="code\appState.h" />
     <ClInclude Include="code\logger.h" />
   </ItemGroup>

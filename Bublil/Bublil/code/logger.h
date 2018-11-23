@@ -16,8 +16,18 @@ TO_DO:
 
 namespace lg
 {
+	///
+	//In 'loggerMessages.h' :
+	///
 	void sayHello();
 
+	void log(const std::string& message);
+	void err(const std::string& message);
+	void warn(const std::string& message);
+
+	///
+	//In 'loggerTextmanip.h' :
+	///
 	enum TEXT_COLOUR
 	{
 		TC_DARK_RED, TC_DARK_GREEN, TC_DARK_BLUE, TC_GREY,
@@ -26,10 +36,6 @@ namespace lg
 		TC_FINALPLACEHOLDER
 	};
 	void textCol(const TEXT_COLOUR& tc);
-	
 
-	void log(const std::string& message);
-	void err(const std::string& message);
-	void warn(const std::string& message);
-
+	void clear();
 }
