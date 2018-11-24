@@ -22,6 +22,21 @@ public:
 	//	state->Update()
 	//	state->Draw()
 	//And check if state->IsDone()
-	virtual void Start() = 0;
+	virtual void Start()
+	{
+		///It might be dumb to divide into 2 loops.
+		while (currentState->next != nullptr)//Loops all but last state.
+		{
+			currentState->Draw();
+			currentState->Update();
+			if (currentState->IsDone())
+				currentState = currentState->next;
+		}
+		while (!currentState->IsDone())
+		{
+			currentState->Draw();
+			currentState->Update();
+		}
+	}
 	
 };
