@@ -38,5 +38,14 @@
     <ClInclude Include="code\application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="code\testApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\testAppState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\testAppStatesImp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

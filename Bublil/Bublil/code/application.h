@@ -38,5 +38,10 @@ public:
 			currentState->Update();
 		}
 	}
-	
+	void ReStart()
+	{
+		currentState = first;
+		Start();
+	}
+	void SetFirst(AppState* states)/*Also changes current*/ { first = states, currentState = states; }
 };

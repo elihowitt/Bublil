@@ -28,6 +28,9 @@
     <ClInclude Include="code\application.h" />
     <ClInclude Include="code\appState.h" />
     <ClInclude Include="code\logger.h" />
+    <ClInclude Include="code\testApp.h" />
+    <ClInclude Include="code\testAppState.h" />
+    <ClInclude Include="code\testAppStatesImp.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
