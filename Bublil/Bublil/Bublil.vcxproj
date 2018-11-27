@@ -22,12 +22,15 @@
     <ClCompile Include="code\appState.cpp" />
     <ClCompile Include="code\loggerMessages.cpp" />
     <ClCompile Include="code\loggerTextmanip.cpp" />
+    <ClCompile Include="code\loggerUtil.cpp" />
     <ClCompile Include="code\Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\application.h" />
     <ClInclude Include="code\appState.h" />
-    <ClInclude Include="code\logger.h" />
+    <ClInclude Include="code\loggerMessages.h" />
+    <ClInclude Include="code\loggerUtil.h" />
+    <ClInclude Include="code\loggerTextmanip.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

@@ -1,24 +1,54 @@
-#include "logger.h"
+#include<SDL2\SDL.h>
 
-void lg::sayHello()
+#include "loggerMessages.h"
+#include"loggerTextmanip.h"
+#include"loggerUtil.h"
+
+
+void lg::cwout::sayHello()
 {
 	std::cout << "Hello world!\n";
 }
 
-void lg::log(const std::string& message)
+void lg::cwout::generalLog(const std::string & type, const std::string & detail)
 {
-	lg::textCol(TEXT_COLOUR::TC_WHITE);
+	std::cout << "T = " << lg::getTime(SDL_GetTicks()) << "   [" << type << "]: " << detail << '\n';
+}
+
+void lg::cwout::basicLog(const std::string& message)
+{
+	lg::cwout::textCol(TEXT_COLOUR::TC_WHITE);
 	std::cout << message<<'\n';
 }
 
-void lg::err(const std::string & message)
+void lg::cwout::err(const std::string & message)
 {
-	lg::textCol(TEXT_COLOUR::TC_RED);
-	std::cout << message << '\n';
+	lg::cwout::textCol(TEXT_COLOUR::TC_RED);
+	lg::cwout::generalLog("ERROR", message);
 }
 
-void lg::warn(const std::string & message)
+void lg::cwout::warn(const std::string & message)
 {
-	lg::textCol(TEXT_COLOUR::TC_RED);
-	std::cout << message << '\n';
+	lg::cwout::textCol(TEXT_COLOUR::TC_DARK_RED);
+	lg::cwout::generalLog("WARN", message);
+}
+
+
+//End of 'cwout' namespace definitions.
+/////////// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~;
+///		    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~;
+/////////// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~;
+/////////// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~;
+///		    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~;
+/////////// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~;
+/////////// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~;
+///		    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~;
+/////////// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~;
+//Start of 'dbout' namespace definitions.
+
+void lg::dbout::basicLog(const WCHAR* s)
+{
+	std::wostringstream os;
+	os << s << L'\n';
+	OutputDebugStringW(os.str().c_str());
 }

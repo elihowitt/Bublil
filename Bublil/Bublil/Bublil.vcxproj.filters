@@ -27,15 +27,24 @@
     <ClCompile Include="code\appState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="code\loggerUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="code\logger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="code\appState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="code\application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\loggerMessages.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\loggerTextmanip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\loggerUtil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

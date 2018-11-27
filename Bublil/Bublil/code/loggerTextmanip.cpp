@@ -1,8 +1,8 @@
 #pragma once
 
-#include"logger.h"
+#include"loggerTextmanip.h"
 
-void lg::textCol(const lg::TEXT_COLOUR& tc)
+void lg::cwout::textCol(const lg::cwout::TEXT_COLOUR& tc)
 {
 	const HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	WORD attrib;
@@ -41,7 +41,7 @@ void lg::textCol(const lg::TEXT_COLOUR& tc)
 	SetConsoleTextAttribute(hStdOut, attrib);
 }
 
-void lg::clear()
+void lg::cwout::clear()
 {
 	HANDLE                     hStdOut;
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
