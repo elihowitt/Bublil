@@ -13,6 +13,7 @@ int main()
 	lg::dbout::basicLog(L"~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 	lg::dbout::basicLog(L"Bob`n Fop`n");
 	lg::cwout::warn("Bob`n!!!");
+
 	std::cin.get();
 
 	return 0;
