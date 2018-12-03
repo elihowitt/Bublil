@@ -23,6 +23,18 @@
     <ClCompile Include="code\loggerMessages.cpp" />
     <ClCompile Include="code\loggerTextmanip.cpp" />
     <ClCompile Include="code\loggerUtil.cpp" />
+    <ClCompile Include="code\net\Client.cpp" />
+    <ClCompile Include="code\net\ClientIni.cpp" />
+    <ClCompile Include="code\net\FileTransferData.cpp" />
+    <ClCompile Include="code\net\Packet.cpp" />
+    <ClCompile Include="code\net\PacketManager.cpp" />
+    <ClCompile Include="code\net\PacketStructs.cpp" />
+    <ClCompile Include="code\net\ProcessPacket.cpp" />
+    <ClCompile Include="code\net\SendGetMethods.cpp" />
+    <ClCompile Include="code\net\Server.cpp" />
+    <ClCompile Include="code\net\ServerIni.cpp" />
+    <ClCompile Include="code\net\SourceClient.cpp" />
+    <ClCompile Include="code\net\SourceServer.cpp" />
     <ClCompile Include="code\Source.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -31,6 +43,13 @@
     <ClInclude Include="code\loggerMessages.h" />
     <ClInclude Include="code\loggerUtil.h" />
     <ClInclude Include="code\loggerTextmanip.h" />
+    <ClInclude Include="code\net\Client.h" />
+    <ClInclude Include="code\net\FileTransferData.h" />
+    <ClInclude Include="code\net\Packet.h" />
+    <ClInclude Include="code\net\PacketManager.h" />
+    <ClInclude Include="code\net\PacketStructs.h" />
+    <ClInclude Include="code\net\PacketType.h" />
+    <ClInclude Include="code\net\Server.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
