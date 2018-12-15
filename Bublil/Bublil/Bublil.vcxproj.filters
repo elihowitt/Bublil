@@ -47,5 +47,8 @@
     <ClInclude Include="code\loggerUtil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="physicsNS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,5 +1,4 @@
 #include"loggerMessages.h"
-#include"loggerUtil.h"
 
 int main()
 {
@@ -12,8 +11,11 @@ int main()
 	lg::dbout::basicLog(L"~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 	lg::dbout::basicLog(L"~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 	lg::dbout::basicLog(L"Bob`n Fop`n");
-	lg::cwout::warn("Bob`n!!!");
-
+	while (true)
+	{
+		Sleep(1000);
+		lg::cwout::warn("Bob`n!!!");
+	}
 	std::cin.get();
 
 	return 0;

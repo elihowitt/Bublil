@@ -25,17 +25,13 @@ public:
 	virtual void Start()
 	{
 		///It might be dumb to divide into 2 loops.
-		while (currentState->next != nullptr)//Loops all but last state.
+		while (currentState != nullptr)//Loops all but last state.
 		{
 			currentState->Draw();
 			currentState->Update();
-			if (currentState->IsDone())
-				currentState = currentState->next;
-		}
-		while (!currentState->IsDone())
-		{
-			currentState->Draw();
-			currentState->Update();
+			int nextState = currentState->IsDone();
+			if (nextState != -1)
+				currentState = currentState->next[nextState];
 		}
 	}
 	

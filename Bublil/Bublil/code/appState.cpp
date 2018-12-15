@@ -2,7 +2,7 @@
 
 
 
-AppState::AppState(AppState* next_p):
+AppState::AppState(AppState** next_p):
 	next(next_p){}
 
 AppState::~AppState()
