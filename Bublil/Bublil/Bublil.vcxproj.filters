@@ -30,6 +30,9 @@
     <ClCompile Include="code\loggerUtil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="code\physicsCollisionNS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\appState.h">
@@ -47,7 +50,13 @@
     <ClInclude Include="code\loggerUtil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="physicsNS.h">
+    <ClInclude Include="code\physicsNS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\physicalUnit.cpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\CoreUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

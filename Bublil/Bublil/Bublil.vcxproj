@@ -24,14 +24,17 @@
     <ClCompile Include="code\loggerTextmanip.cpp" />
     <ClCompile Include="code\loggerUtil.cpp" />
     <ClCompile Include="code\Source.cpp" />
+    <ClCompile Include="code\physicsCollisionNS.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\application.h" />
     <ClInclude Include="code\appState.h" />
+    <ClInclude Include="code\CoreUtils.h" />
     <ClInclude Include="code\loggerMessages.h" />
     <ClInclude Include="code\loggerUtil.h" />
     <ClInclude Include="code\loggerTextmanip.h" />
-    <ClInclude Include="physicsNS.h" />
+    <ClInclude Include="code\physicsNS.h" />
+    <ClInclude Include="code\physicalUnit.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
