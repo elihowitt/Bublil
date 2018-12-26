@@ -5,10 +5,11 @@ class Application;
 class AppState
 {
 public:
-	AppState(AppState** next_p = nullptr);
+	AppState(AppState** next_p = nullptr, const int& numNexts_p = 1);
 	virtual ~AppState();
 
 	AppState** next;
+	int numNexts;
 
 		///You must give child a machine* to update its variables.
 

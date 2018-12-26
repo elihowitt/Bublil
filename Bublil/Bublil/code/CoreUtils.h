@@ -10,3 +10,9 @@ static float distance(const glm::vec3& a, const glm::vec3& b)
 {
 	return sqrt(distanceSquared(a, b));
 }
+
+enum STATE_FLAGS
+{
+	STATE_QUITE = -1,
+	STATE_REPEAT = -2
+};

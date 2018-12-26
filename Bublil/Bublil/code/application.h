@@ -1,6 +1,7 @@
 #pragma once
 
 #include"appState.h"
+#include"CoreUtils.h"
 
 class Application
 {
@@ -24,15 +25,33 @@ public:
 	//And check if state->IsDone()
 	virtual void Start()
 	{
-		///It might be dumb to divide into 2 loops.
-		while (currentState != nullptr)//Loops all but last state.
+		int nextState;
+		while (currentState != nullptr)
 		{
 			currentState->Draw();
 			currentState->Update();
-			int nextState = currentState->IsDone();
-			if (nextState != -1)
+			nextState = currentState->IsDone();
+			switch (nextState)
+			{
+			case STATE_FLAGS::STATE_QUITE:
+				currentState = nullptr;
+				break;
+			case STATE_FLAGS::STATE_REPEAT:
+				break;
+			default:
 				currentState = currentState->next[nextState];
+				break;
+			}
+			//if (nextState != -1)
+			//	currentState = currentState->next[nextState];
 		}
 	}
+
+	void ReStart()
+	{
+		currentState = first;
+		Start();
+	}
+	void SetFirst(AppState* states)/*Also changes current*/ { first = states, currentState = states; }
 	
 };

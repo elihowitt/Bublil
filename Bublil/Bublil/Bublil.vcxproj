@@ -23,8 +23,9 @@
     <ClCompile Include="code\loggerMessages.cpp" />
     <ClCompile Include="code\loggerTextmanip.cpp" />
     <ClCompile Include="code\loggerUtil.cpp" />
-    <ClCompile Include="code\Source.cpp" />
     <ClCompile Include="code\physicsCollisionNS.cpp" />
+    <ClCompile Include="code\Test\TestAppStateImp.h" />
+    <ClCompile Include="code\Test\testMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\application.h" />
@@ -35,6 +36,8 @@
     <ClInclude Include="code\loggerTextmanip.h" />
     <ClInclude Include="code\physicsNS.h" />
     <ClInclude Include="code\physicalUnit.cpp" />
+    <ClInclude Include="code\Test\TestApp.h" />
+    <ClInclude Include="code\Test\TestAppState.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

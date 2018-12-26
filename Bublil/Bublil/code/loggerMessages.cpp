@@ -7,11 +7,46 @@
 
 void lg::cwout::sayHello()
 {
-	std::cout << "Hello world!\n";
+	std::string str("Hello world!");
+	for (char c : str)
+	{
+		switch (rand()%8)
+		{	
+		case 0:
+			lg::cwout::textCol(TEXT_COLOUR::TC_DARK_RED);
+			break;
+		case 1:
+			lg::cwout::textCol(TEXT_COLOUR::TC_DARK_GREEN);
+			break;
+		case 2:
+			lg::cwout::textCol(TEXT_COLOUR::TC_DARK_BLUE);
+			break;
+		case 3:
+			lg::cwout::textCol(TEXT_COLOUR::TC_RED);
+			break;
+		case 4:
+			lg::cwout::textCol(TEXT_COLOUR::TC_GREEN);
+			break;
+		case 5:
+			lg::cwout::textCol(TEXT_COLOUR::TC_BLUE);
+			break;
+		case 6:
+			lg::cwout::textCol(TEXT_COLOUR::TC_GREY);
+			break;
+		case 7:
+			lg::cwout::textCol(TEXT_COLOUR::TC_WHITE);
+			break;
+		}
+		std::cout << c;
+	}
+	std::cout << '\n';
+	//lg::cwout::textCol(TEXT_COLOUR::TC_WHITE);
+	//std::cout << "Hello world!\n";
 }
 
 void lg::cwout::generalLog(const std::string & type, const std::string & detail)
 {
+	lg::cwout::textCol(TEXT_COLOUR::TC_WHITE);
 	std::cout << "T = " << lg::getTime(SDL_GetTicks()) << "   [" << type << "]: " << detail << '\n';
 }
 
