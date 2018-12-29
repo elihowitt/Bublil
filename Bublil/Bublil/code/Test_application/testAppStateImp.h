@@ -23,7 +23,7 @@ public:
 			machine->wasGreeted = true;
 	}
 	int IsDone()const override
-	{		
+	{
 		if (machine->wasGreeted)
 			return 0;
 

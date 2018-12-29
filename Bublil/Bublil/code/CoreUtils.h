@@ -1,5 +1,7 @@
 #include"glm/glm.hpp"
 
+#pragma once
+
 static glm::vec3 VECTOR_ZERO(0, 0, 0);
 
 static float distanceSquared(const glm::vec3& a, const glm::vec3& b)

@@ -362,10 +362,22 @@ namespace phy
 		}
 
 		bool doCollideSimple(const CollisionBody& a, const CollisionBody& b)
+			//Temporary dumb code.
 		{
-			CollisionBody sa = a.getSphere(), sb = b.getSphere();
-			Collision coll = checks::sphere_sphere(sa, sb);
+			//CollisionBody sa = a.getSphere(), sb = b.getSphere();
+			//Collision coll = checks::sphere_sphere(sa, sb);
+			Collision coll = checks::sphere_sphere(a, b);
 			return coll.didHit;
+		}
+		namespace checks
+		{
+			Collision sphere_sphere(const CollisionBody& a, const CollisionBody& b)
+			{
+				//Temporary dumb code.
+				Collision col;
+				col.didHit = distance(*a.centre, *b.centre) <= (*a.radius + *b.radius);
+				return col;
+			}
 		}
 	}
 }

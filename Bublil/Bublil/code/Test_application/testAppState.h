@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../appState.h"
-#include "TestApp.h"
+#include "testApp.h"
 
 class TestAppState :public AppState
 {

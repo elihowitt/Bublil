@@ -80,7 +80,7 @@ namespace phy
 
 		namespace checks//All functions for checkiong specific collisions.
 		{
-			Collision sphere_sphere(const CollisionBody& a, const CollisionBody& b) { return Collision(); }
+			Collision sphere_sphere(const CollisionBody& a, const CollisionBody& b);
 		}
 	}
 

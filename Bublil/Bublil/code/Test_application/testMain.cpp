@@ -1,7 +1,7 @@
-#include "TestAppStateImp.h"
+#include "testAppStateImp.h"
 #include<ctime>
 
-int main()
+int main_()
 {
 	TestApp *test = new TestApp(nullptr, "Bob`n");
 

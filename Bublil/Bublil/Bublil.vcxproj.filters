@@ -30,10 +30,10 @@
     <ClCompile Include="code\physicsCollisionNS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="code\Test\testMain.cpp">
+    <ClCompile Include="code\Test_application\testMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="code\Test\TestAppStateImp.h">
+    <ClCompile Include="code\Test_physics\testPhysicsMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,10 +62,22 @@
     <ClInclude Include="code\CoreUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="code\Test\TestApp.h">
+    <ClInclude Include="code\Test_application\testApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="code\Test\TestAppState.h">
+    <ClInclude Include="code\Test_application\testAppState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Test_application\testAppStateImp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Test_physics\testPhysicsApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Test_physics\testPhysicsAppState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Test_physics\testPhysicsAppStateImp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
