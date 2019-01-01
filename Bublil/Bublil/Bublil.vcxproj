@@ -24,8 +24,9 @@
     <ClCompile Include="code\loggerTextmanip.cpp" />
     <ClCompile Include="code\loggerUtil.cpp" />
     <ClCompile Include="code\physicsCollisionNS.cpp" />
-    <ClCompile Include="code\Test_application\testMain.cpp" />
-    <ClCompile Include="code\Test_physics\testPhysicsMain.cpp" />
+    <ClCompile Include="code\Tests\Test_application\testMain.cpp" />
+    <ClCompile Include="code\Tests\Test_physics\testPhysicsMain.cpp" />
+    <ClCompile Include="code\Tests\Test_visually\testVisuallyMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\application.h" />
@@ -36,12 +37,14 @@
     <ClInclude Include="code\loggerTextmanip.h" />
     <ClInclude Include="code\physicsNS.h" />
     <ClInclude Include="code\physicalUnit.cpp" />
-    <ClInclude Include="code\Test_application\testApp.h" />
-    <ClInclude Include="code\Test_application\testAppState.h" />
-    <ClInclude Include="code\Test_application\testAppStateImp.h" />
-    <ClInclude Include="code\Test_physics\testPhysicsApp.h" />
-    <ClInclude Include="code\Test_physics\testPhysicsAppState.h" />
-    <ClInclude Include="code\Test_physics\testPhysicsAppStateImp.h" />
+    <ClInclude Include="code\physicsUnit_EntityNS.h" />
+    <ClInclude Include="code\Tests\Test_application\testApp.h" />
+    <ClInclude Include="code\Tests\Test_application\testAppState.h" />
+    <ClInclude Include="code\Tests\Test_application\testAppStateImp.h" />
+    <ClInclude Include="code\Tests\Test_physics\testPhysicsApp.h" />
+    <ClInclude Include="code\Tests\Test_physics\testPhysicsAppState.h" />
+    <ClInclude Include="code\Tests\Test_physics\testPhysicsAppStateImp.h" />
+    <ClInclude Include="code\Tests\Test_visually\olc.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

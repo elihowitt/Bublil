@@ -7,7 +7,10 @@ class Application
 {
 public:
 	Application(AppState* states) :
-		currentState(states), first(states) {}
+		currentState(states), first(states)
+	{
+		initVals();
+	}
 	virtual ~Application()
 	{
 		if (currentState != nullptr)
@@ -18,6 +21,8 @@ protected:
 	//One state which will change according to events 
 	//and one constant state for restarting.
 	AppState* currentState, const *first;
+
+	virtual void initVals() {}
 public:
 	//Idea is to loop calling 
 	//	state->Update()
@@ -42,14 +47,13 @@ public:
 				currentState = currentState->next[nextState];
 				break;
 			}
-			//if (nextState != -1)
-			//	currentState = currentState->next[nextState];
 		}
 	}
 
 	void ReStart()
 	{
 		currentState = first;
+		initVals();
 		Start();
 	}
 	void SetFirst(AppState* states)/*Also changes current*/ { first = states, currentState = states; }

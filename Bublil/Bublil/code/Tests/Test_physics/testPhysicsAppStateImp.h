@@ -1,8 +1,8 @@
 #pragma once
 
 #include"testPhysicsAppState.h"
-#include"../loggerMessages.h"
-#include"../loggerTextmanip.h"
+#include"../../loggerMessages.h"
+#include"../../loggerTextmanip.h"
 #include<Windows.h>//For none-stopping input.
 
 class TestPhysicsAppState_Input : public TestPhysicsAppState

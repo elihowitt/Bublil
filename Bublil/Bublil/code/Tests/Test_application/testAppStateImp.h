@@ -1,8 +1,8 @@
 #pragma once
 
 #include"testAppState.h"
-#include"../loggerMessages.h"
-#include"../loggerTextmanip.h"
+#include"../../loggerMessages.h"
+#include"../../loggerTextmanip.h"
 #include<Windows.h>//For none-stopping input.
 
 class TestAppState_Greet : public TestAppState

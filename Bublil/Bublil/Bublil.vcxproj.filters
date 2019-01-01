@@ -30,10 +30,13 @@
     <ClCompile Include="code\physicsCollisionNS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="code\Test_application\testMain.cpp">
+    <ClCompile Include="code\Tests\Test_physics\testPhysicsMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="code\Test_physics\testPhysicsMain.cpp">
+    <ClCompile Include="code\Tests\Test_application\testMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Tests\Test_visually\testVisuallyMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,22 +65,28 @@
     <ClInclude Include="code\CoreUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="code\Test_application\testApp.h">
+    <ClInclude Include="code\Tests\Test_physics\testPhysicsApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="code\Test_application\testAppState.h">
+    <ClInclude Include="code\Tests\Test_physics\testPhysicsAppState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="code\Test_application\testAppStateImp.h">
+    <ClInclude Include="code\Tests\Test_physics\testPhysicsAppStateImp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="code\Test_physics\testPhysicsApp.h">
+    <ClInclude Include="code\Tests\Test_application\testApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="code\Test_physics\testPhysicsAppState.h">
+    <ClInclude Include="code\Tests\Test_application\testAppState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="code\Test_physics\testPhysicsAppStateImp.h">
+    <ClInclude Include="code\Tests\Test_application\testAppStateImp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Tests\Test_visually\olc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\physicsUnit_EntityNS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
