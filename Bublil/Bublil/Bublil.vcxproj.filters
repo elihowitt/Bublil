@@ -27,9 +27,6 @@
     <ClCompile Include="code\loggerUtil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="code\physicsCollisionNS.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="code\Tests\Test_physics\testPhysicsMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -39,7 +36,19 @@
     <ClCompile Include="code\Tests\Test_visually\testVisuallyMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="code\phyGeneral.cpp">
+    <ClCompile Include="code\MiniLibs\physics\physicsPhysicalUnit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MiniLibs\physics\physicsPhysicalEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MiniLibs\physics\physicsGeneral.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MiniLibs\physics\physicsCollision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MiniLibs\physics\physicsCollisionBody.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,13 +92,7 @@
     <ClInclude Include="code\Tests\Test_visually\olc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="code\physicsUnit_EntityNS.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="code\physicsCollisionNS.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="code\physicalUnit_Entity.cpp">
+    <ClInclude Include="code\MiniLibs\physics\physics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,8 +2,7 @@
 
 #include"olc.h"
 
-#include"../../physicsCollisionNS.h"
-#include"../../physicsUnit_EntityNS.h"
+#include"../code/MiniLibs/physics/physics.h"
 
 #include<vector>
 
@@ -110,7 +109,7 @@ public:
 				activeExplosion = true;
 				explosionStart =  30;
 				mouseWhenExplosion = glm::vec2(GetMouseX(), GetMouseY());
-				float dist = 0.5f*distanceSquared(c.first.unit.position, glm::vec3(GetMouseX(), GetMouseY(), 0));
+				float dist = 0.5f*phy::distanceSquared(c.first.unit.position, glm::vec3(GetMouseX(), GetMouseY(), 0));
 				phy::PhysicalUnit::applyForce(c.first.unit, glm::vec3(-50000000 / dist * (dir.x), -150000000 / dist * (dir.y), 0));
 			}
 

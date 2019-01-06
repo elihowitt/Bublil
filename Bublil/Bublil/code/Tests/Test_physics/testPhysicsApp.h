@@ -1,8 +1,7 @@
 #pragma once
 
 #include"../../application.h"
-#include"../../physicsCollisionNS.h"
-#include"../../physicsUnit_EntityNS.h"
+#include"../code/MiniLibs/physics/physics.h"
 
 class TestPhysicsApp : public Application
 {
