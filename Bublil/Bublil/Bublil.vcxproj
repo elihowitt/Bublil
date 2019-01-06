@@ -27,6 +27,7 @@
     <ClCompile Include="code\Tests\Test_application\testMain.cpp" />
     <ClCompile Include="code\Tests\Test_physics\testPhysicsMain.cpp" />
     <ClCompile Include="code\Tests\Test_visually\testVisuallyMain.cpp" />
+    <ClCompile Include="code\phyGeneral.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\application.h" />
@@ -35,8 +36,8 @@
     <ClInclude Include="code\loggerMessages.h" />
     <ClInclude Include="code\loggerUtil.h" />
     <ClInclude Include="code\loggerTextmanip.h" />
-    <ClInclude Include="code\physicsNS.h" />
-    <ClInclude Include="code\physicalUnit.cpp" />
+    <ClInclude Include="code\physicsCollisionNS.h" />
+    <ClInclude Include="code\physicalUnit_Entity.cpp" />
     <ClInclude Include="code\physicsUnit_EntityNS.h" />
     <ClInclude Include="code\Tests\Test_application\testApp.h" />
     <ClInclude Include="code\Tests\Test_application\testAppState.h" />
