@@ -2,11 +2,14 @@
 
 #include"olc.h"
 
-#include"../code/MiniLibs/physics/physics.h"
+#include<PHYSICS\physics.h>
 
 #include<vector>
 
 #include<ctime>
+
+#include<cmath>
+
 
 class TestVisually :public olc::PixelGameEngine
 {
@@ -16,9 +19,6 @@ public:
 		sAppName = "Testing visually.";
 	}
 public:
-	//phy::PhysicalEntity circleA = phy::PhysicalEntity(phy::PhysicalUnit(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), 10), phy::col::CollisionBody(phy::col::CBT_SPHERE, false, new glm::vec3(0, 0, 0), new float(25), nullptr, nullptr, nullptr, nullptr));
-	//phy::PhysicalEntity circleB = phy::PhysicalEntity(phy::PhysicalUnit(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), 10), phy::col::CollisionBody(phy::col::CBT_SPHERE, false, new glm::vec3(0, 0, 0), new float(25), nullptr, nullptr, nullptr, nullptr));
-
 	std::vector<std::pair<phy::PhysicalEntity, olc::Pixel>> circles;
 
 	int size;
@@ -33,15 +33,18 @@ public:
 	int explosionStart;
 	glm::vec2 mouseWhenExplosion;
 
+	bool suck;
+
 	bool OnUserCreate() override
 	{
+		suck = false;
 		activeExplosion = false;
 		explosion = false;
 		screenMid = ScreenWidth() / 2;
 		jump = false;
 		srand(time(0));
-		size = 50;
-		int xPos, yPos;
+		size = 100;
+		float xPos, yPos;
 		int mass;
 		// Called once at the start, so create things here
 		for (int i = 0; i < size; ++i)
@@ -49,12 +52,14 @@ public:
 			mass = rand() % 26 + 5;
 			xPos = (ScreenWidth() - 20) / size * i + 20;
 			yPos = ScreenHeight() - mass - 1;
+			olc::Pixel colour = getPixelByPosition(glm::vec3(xPos, yPos, 0));
 			circles.push_back(
 				{
 				phy::PhysicalEntity(
 								phy::PhysicalUnit(glm::vec3(xPos, yPos, 0), glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), mass),
 								phy::col::CollisionBody(phy::col::CBT_SPHERE, false, new glm::vec3(xPos, yPos, 0), new float(mass), nullptr, nullptr, nullptr, nullptr)),
-				colours[(int)((10 * i / size) * 3.5) % 10]
+				colour
+				//colours[(int)((10 * i / size) * 3.5) % 10]
 				});
 		}
 
@@ -62,19 +67,8 @@ public:
 	}
 	bool OnUserUpdate(float fElapsedTime) override
 	{
-		//*circleA.body.centre = circleA.unit.position;
-		//*circleB.body.centre = circleB.unit.position;
+		FillRect(0, 0, ScreenWidth(), ScreenHeight(), olc::BLACK);
 
-		// called once per frame, draws random coloured pixels
-		//for (int x = 0; x < ScreenWidth(); x++)
-		//	for (int y = 0; y < ScreenHeight(); y++)
-
-		//if (phy::col::doCollideSimple(circleA.body, circleB.body))
-		//	FillRect(0, 0, ScreenWidth(), ScreenHeight(), olc::GREEN);
-		/*else*/ FillRect(0, 0, ScreenWidth(), ScreenHeight(), olc::BLACK);
-
-		//if (phy::col::doCollideSimple(circleA.body, circleB.body))
-		//	DrawString(50,50,"Hit!", olc::WHITE, 5U);
 		if (GetKey(olc::Key::UP).bReleased)
 			jump = true;
 		else jump = false;
@@ -82,6 +76,10 @@ public:
 		if (GetMouse(0).bReleased)
 			explosion = true;
 		else explosion = false;
+
+		if (GetMouse(1).bHeld)
+			suck = true;
+		else suck = false;
 
 		if (activeExplosion)
 		{
@@ -99,9 +97,7 @@ public:
 			glm::vec3 dir = glm::normalize(glm::vec3(GetMouseX(), GetMouseY(), 0) - c.first.unit.position);
 			//Jumping.
 			if (jump)
-				phy::PhysicalUnit::applyForce(c.first.unit, glm::vec3(0000, -250000, 0));
-			//phy::PhysicalUnit::applyForce(c.first.unit, glm::vec3(dir.x * -1000, dir.y * -49900/(c.first.unit.mass/4), 0));
-
+				phy::PhysicalUnit::applyForce(c.first.unit, glm::vec3(0000, phy::literals::kilo(-250), 0));
 
 		//Explosions.
 			if (explosion)
@@ -110,11 +106,19 @@ public:
 				explosionStart =  30;
 				mouseWhenExplosion = glm::vec2(GetMouseX(), GetMouseY());
 				float dist = 0.5f*phy::distanceSquared(c.first.unit.position, glm::vec3(GetMouseX(), GetMouseY(), 0));
-				phy::PhysicalUnit::applyForce(c.first.unit, glm::vec3(-50000000 / dist * (dir.x), -150000000 / dist * (dir.y), 0));
+				glm::vec2 explosionFactor(phy::literals::giga(0.5), phy::literals::giga(1.5));
+				phy::PhysicalUnit::applyForce(c.first.unit, glm::vec3(- explosionFactor.x/ dist * (dir.x), - explosionFactor.y/ dist * (dir.y), 0));
+			}
+
+			//Explosions.
+			if (suck)
+			{
+				FillCircle(GetMouseX(), GetMouseY(), 10, olc::GREEN);
+				phy::PhysicalUnit::applyForce(c.first.unit, glm::vec3(phy::literals::kilo(100*dir.x), phy::literals::kilo(100*dir.y), 0));
 			}
 
 			//Gravity.
-			phy::PhysicalUnit::applyForce(c.first.unit, glm::vec3(0, 10000, 0));
+			phy::PhysicalUnit::applyForce(c.first.unit, glm::vec3(0, phy::literals::kilo(c.first.unit.mass), 0));
 
 			if (c.first.unit.position.x - *c.first.body.radius <= 0 || c.first.unit.position.x + *c.first.body.radius >= ScreenWidth())
 			{
@@ -146,37 +150,23 @@ public:
 			phy::PhysicalUnit::updatePosition(c.first.unit, fElapsedTime);
 			*c.first.body.centre = c.first.unit.position;
 		}
-
-		//DrawCircle(circleA.unit.position.x, circleA.unit.position.y, *circleA.body.radius, olc::RED);
-		//DrawCircle(circleB.unit.position.x, circleB.unit.position.y, *circleB.body.radius, olc::BLUE);
-
-		//if (GetKey(olc::Key::DOWN).bReleased)
-		//	phy::PhysicalUnit::applyForce(circleA.unit, glm::vec3(0000, -100000, 0));
-
-		//phy::PhysicalUnit::applyForce(circleA.unit, glm::vec3(0, 5000, fElapsedTime));
-
-		//if ((circleB.unit.position.x - *circleB.body.radius <= 0) || (circleB.unit.position.x + *circleB.body.radius >= ScreenWidth()))
-		//{
-		//	circleB.unit.velocity *= -1;
-		//}
-		//phy::PhysicalUnit::updatePosition(circleB.unit, fElapsedTime);
-
-		//if (circleA.unit.position.y + *circleA.body.radius >= ScreenHeight())
-		//{
-		//	circleA.unit.velocity *= -1/2.f;
-		//	//circleA.unit.velocity = glm::vec3(0, 0, 0);
-		//	circleA.unit.position.y = ScreenHeight() - *circleA.body.radius;
-		//}
-		//phy::PhysicalUnit::updatePosition(circleA.unit, fElapsedTime);
-
 		return true;
+	}
+	olc::Pixel getPixelByPosition(const glm::vec3 &pos)
+	{
+		float wf,hf;
+		wf = 100 / 255;
+		//wf = pos.x / ScreenWidth();
+		hf = pos.y / ScreenHeight()*100;
+		//wf = cos(pos.x) > 0 ? cos(pos.x) : cos(pos.x);
+		return olc::Pixel(wf*255, hf*255, 100);
 	}
 };
 
 int main()
 {
 	TestVisually test;
-	if (test.Construct(400, 200, 3, 3))
+	if (test.Construct(1200, 600, 1, 1))
 		test.Start();
 
 	return 1;

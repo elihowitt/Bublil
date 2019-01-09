@@ -165,4 +165,37 @@ namespace phy
 		bool doCollideSimple(const PhysicalEntity& a, const PhysicalEntity& b);
 		bool doCollideSimple(const CollisionBody& a, const CollisionBody& b);
 	}
+	namespace literals
+	{
+		template<typename T>
+		T nano(T t)
+		{
+			return t / 1000000000;
+		}
+		template<typename T>
+		T micro(T t)
+		{
+			return t / 1000000;
+		}
+		template<typename T>
+		T milli(T t)
+		{
+			return t / 100;
+		}
+		template<typename T>
+		T kilo(T t)
+		{
+			return t * 1000;
+		}
+		template<typename T>
+		T mega(T t)
+		{
+			return t * 1000000;
+		}
+		template<typename T>
+		T giga(T t)
+		{
+			return t * 1000000000;
+		}
+	}
 }
