@@ -1,6 +1,6 @@
 #pragma once
 
-#include"../../application.h"
+#include"APPLICATION\application.h"
 #include"string"
 
 class TestApp : public Application

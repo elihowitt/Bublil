@@ -15,18 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="code\loggerMessages.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="code\loggerTextmanip.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="code\appState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="code\loggerUtil.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="code\Tests\Test_physics\testPhysicsMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -51,23 +39,20 @@
     <ClCompile Include="code\MiniLibs\physics\physicsCollisionBody.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="code\MiniLibs\LOGGER\loggerGeneral.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MiniLibs\LOGGER\loggerTextmanip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MiniLibs\LOGGER\loggerMessages.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MiniLibs\APPLICATION\appState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="code\appState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="code\application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="code\loggerMessages.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="code\loggerTextmanip.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="code\loggerUtil.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="code\CoreUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -93,6 +78,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="code\MiniLibs\physics\physics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MiniLibs\LOGGER\logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MiniLibs\APPLICATION\appState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MiniLibs\APPLICATION\application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

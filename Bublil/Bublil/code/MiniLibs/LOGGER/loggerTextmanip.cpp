@@ -1,6 +1,6 @@
 #pragma once
 
-#include"loggerTextmanip.h"
+#include"logger.h"
 
 void lg::cwout::textCol(const lg::cwout::TEXT_COLOUR& tc)
 {

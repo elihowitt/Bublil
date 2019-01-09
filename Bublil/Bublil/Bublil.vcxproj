@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="code\appState.cpp" />
-    <ClCompile Include="code\loggerMessages.cpp" />
-    <ClCompile Include="code\loggerTextmanip.cpp" />
-    <ClCompile Include="code\loggerUtil.cpp" />
+    <ClCompile Include="code\MiniLibs\APPLICATION\appState.cpp" />
+    <ClCompile Include="code\MiniLibs\LOGGER\loggerMessages.cpp" />
+    <ClCompile Include="code\MiniLibs\LOGGER\loggerTextmanip.cpp" />
+    <ClCompile Include="code\MiniLibs\LOGGER\loggerGeneral.cpp" />
     <ClCompile Include="code\MiniLibs\physics\physicsCollision.cpp" />
     <ClCompile Include="code\MiniLibs\physics\physicsCollisionBody.cpp" />
     <ClCompile Include="code\MiniLibs\physics\physicsGeneral.cpp" />
@@ -33,12 +33,10 @@
     <ClCompile Include="code\Tests\Test_visually\testVisuallyMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="code\application.h" />
-    <ClInclude Include="code\appState.h" />
+    <ClInclude Include="code\MiniLibs\APPLICATION\application.h" />
+    <ClInclude Include="code\MiniLibs\APPLICATION\appState.h" />
     <ClInclude Include="code\CoreUtils.h" />
-    <ClInclude Include="code\loggerMessages.h" />
-    <ClInclude Include="code\loggerUtil.h" />
-    <ClInclude Include="code\loggerTextmanip.h" />
+    <ClInclude Include="code\MiniLibs\LOGGER\logger.h" />
     <ClInclude Include="code\MiniLibs\physics\physics.h" />
     <ClInclude Include="code\Tests\Test_application\testApp.h" />
     <ClInclude Include="code\Tests\Test_application\testAppState.h" />

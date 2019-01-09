@@ -2,7 +2,9 @@
 
 #include"olc.h"
 
-#include<PHYSICS\physics.h>
+#include"PHYSICS\physics.h"
+
+#include"LOGGER\logger.h"
 
 #include<vector>
 
@@ -10,6 +12,7 @@
 
 #include<cmath>
 
+using namespace phy::literals;
 
 class TestVisually :public olc::PixelGameEngine
 {
@@ -43,13 +46,13 @@ public:
 		screenMid = ScreenWidth() / 2;
 		jump = false;
 		srand(time(0));
-		size = 100;
+		size = 10;
 		float xPos, yPos;
 		int mass;
 		// Called once at the start, so create things here
 		for (int i = 0; i < size; ++i)
 		{
-			mass = rand() % 26 + 5;
+			mass = rand() % 46 + 5;
 			xPos = (ScreenWidth() - 20) / size * i + 20;
 			yPos = ScreenHeight() - mass - 1;
 			olc::Pixel colour = getPixelByPosition(glm::vec3(xPos, yPos, 0));
@@ -97,28 +100,30 @@ public:
 			glm::vec3 dir = glm::normalize(glm::vec3(GetMouseX(), GetMouseY(), 0) - c.first.unit.position);
 			//Jumping.
 			if (jump)
-				phy::PhysicalUnit::applyForce(c.first.unit, glm::vec3(0000, phy::literals::kilo(-250), 0));
+				phy::PhysicalUnit::applyForce(c.first.unit, glm::vec3(0000, kilo(-250), 0));
 
 		//Explosions.
 			if (explosion)
 			{
+				//typedef giga giga
+				//#define giga giga
 				activeExplosion = true;
 				explosionStart =  30;
 				mouseWhenExplosion = glm::vec2(GetMouseX(), GetMouseY());
 				float dist = 0.5f*phy::distanceSquared(c.first.unit.position, glm::vec3(GetMouseX(), GetMouseY(), 0));
-				glm::vec2 explosionFactor(phy::literals::giga(0.5), phy::literals::giga(1.5));
+				glm::vec2 explosionFactor(giga(0.5), giga(1.5));
 				phy::PhysicalUnit::applyForce(c.first.unit, glm::vec3(- explosionFactor.x/ dist * (dir.x), - explosionFactor.y/ dist * (dir.y), 0));
 			}
-
+			
 			//Explosions.
 			if (suck)
 			{
 				FillCircle(GetMouseX(), GetMouseY(), 10, olc::GREEN);
-				phy::PhysicalUnit::applyForce(c.first.unit, glm::vec3(phy::literals::kilo(100*dir.x), phy::literals::kilo(100*dir.y), 0));
+				phy::PhysicalUnit::applyForce(c.first.unit, glm::vec3(kilo(100*dir.x), kilo(100*dir.y), 0));
 			}
 
 			//Gravity.
-			phy::PhysicalUnit::applyForce(c.first.unit, glm::vec3(0, phy::literals::kilo(c.first.unit.mass), 0));
+			phy::PhysicalUnit::applyForce(c.first.unit, glm::vec3(0, kilo(c.first.unit.mass), 0));
 
 			if (c.first.unit.position.x - *c.first.body.radius <= 0 || c.first.unit.position.x + *c.first.body.radius >= ScreenWidth())
 			{
@@ -159,7 +164,8 @@ public:
 		//wf = pos.x / ScreenWidth();
 		hf = pos.y / ScreenHeight()*100;
 		//wf = cos(pos.x) > 0 ? cos(pos.x) : cos(pos.x);
-		return olc::Pixel(wf*255, hf*255, 100);
+		return olc::Pixel(rand() % 255, rand() % 255, rand() % 255);
+		//return olc::Pixel(wf*255, hf*255, 100);
 	}
 };
 

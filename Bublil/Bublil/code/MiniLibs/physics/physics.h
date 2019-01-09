@@ -168,17 +168,17 @@ namespace phy
 	namespace literals
 	{
 		template<typename T>
-		T nano(T t)
+		float nano(T t)
 		{
 			return t / 1000000000;
 		}
 		template<typename T>
-		T micro(T t)
+		float micro(T t)
 		{
 			return t / 1000000;
 		}
 		template<typename T>
-		T milli(T t)
+		float milli(T t)
 		{
 			return t / 100;
 		}

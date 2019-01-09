@@ -1,8 +1,6 @@
 #include<SDL2\SDL.h>
 
-#include "loggerMessages.h"
-#include"loggerTextmanip.h"
-#include"loggerUtil.h"
+#include"logger.h"
 
 
 void lg::cwout::sayHello()
