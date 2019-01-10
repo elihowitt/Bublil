@@ -1,7 +1,4 @@
-#include<SDL2\SDL.h>
-
 #include"logger.h"
-
 
 void lg::cwout::sayHello()
 {
@@ -45,7 +42,7 @@ void lg::cwout::sayHello()
 void lg::cwout::generalLog(const std::string & type, const std::string & detail)
 {
 	lg::cwout::textCol(TEXT_COLOUR::TC_WHITE);
-	std::cout << "T = " << lg::getTime(SDL_GetTicks()) << "   [" << type << "]: " << detail << '\n';
+	std::cout << "T = " << lg::getTime() << "   [" << type << "]: " << detail << '\n';
 }
 
 void lg::cwout::basicLog(const std::string& message)

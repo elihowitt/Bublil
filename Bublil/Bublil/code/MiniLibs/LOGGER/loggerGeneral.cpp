@@ -1,6 +1,13 @@
 #include"logger.h"
 
-std::string lg::getTime(const long int & milliseconds)
+#include<SDL2\SDL.h>
+
+std::string lg::getTime()
+{
+	return getTimeByMilliseconds(SDL_GetTicks());
+}
+
+std::string lg::getTimeByMilliseconds(const long int & milliseconds)
 {
 	std::string str;
 

@@ -51,6 +51,9 @@
     <ClCompile Include="code\MiniLibs\APPLICATION\appState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="code\MiniLibs\LOGGER\loggerFileOutput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\CoreUtils.h">
@@ -89,5 +92,9 @@
     <ClInclude Include="code\MiniLibs\APPLICATION\application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="loggings\runtimeEvents.txt" />
+    <Text Include="loggings\results.txt" />
   </ItemGroup>
 </Project>

@@ -4,10 +4,12 @@
 #include<string>	//General comfort.
 #include<Windows.h>	//General comfort.
 #include<sstream>	//DBout.
+#include<fstream>	//Fout.
 
 namespace lg
 {
-	std::string getTime(const long int& milliseconds);
+	std::string getTime();
+	std::string getTimeByMilliseconds(const long int& milliseconds);
 
 	namespace cwout//Console window outpute(written to standard console window).
 	{
@@ -35,4 +37,17 @@ namespace lg
 	{
 		void basicLog(const WCHAR *s);
 	}
+	class fout
+	{
+	public:
+		fout();
+		~fout();
+		void logRuntimeEvent(const std::string& type, const std::string& detail); //logs like 'generalLog'
+																				  //To 'logging/runtimEvents.txt'.
+		void logResults(const std::string& data);//Used to log the end-results of running the program.
+												 //Logs to 'loggings/results.txt'.
+
+	private:
+		std::ofstream runtimeEventFile, resultFile;
+	};
 }

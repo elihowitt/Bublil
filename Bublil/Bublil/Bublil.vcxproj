@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\MiniLibs\APPLICATION\appState.cpp" />
+    <ClCompile Include="code\MiniLibs\LOGGER\loggerFileOutput.cpp" />
     <ClCompile Include="code\MiniLibs\LOGGER\loggerMessages.cpp" />
     <ClCompile Include="code\MiniLibs\LOGGER\loggerTextmanip.cpp" />
     <ClCompile Include="code\MiniLibs\LOGGER\loggerGeneral.cpp" />
@@ -45,6 +46,10 @@
     <ClInclude Include="code\Tests\Test_physics\testPhysicsAppState.h" />
     <ClInclude Include="code\Tests\Test_physics\testPhysicsAppStateImp.h" />
     <ClInclude Include="code\Tests\Test_visually\olc.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="loggings\results.txt" />
+    <Text Include="loggings\runtimeEvents.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

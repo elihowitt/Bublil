@@ -1,7 +1,7 @@
 #pragma once
 
 #include"APPLICATION\application.h"
-#include"../code/MiniLibs/physics/physics.h"
+#include"PHYSICS\physics.h"
 
 class TestPhysicsApp : public Application
 {

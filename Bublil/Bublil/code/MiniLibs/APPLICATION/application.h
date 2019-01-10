@@ -3,6 +3,12 @@
 #include"appState.h"
 #include"../code/CoreUtils.h"
 
+//enum STATE_FLAGS
+//{
+//	STATE_QUITE = -1,
+//	STATE_REPEAT = -2
+//};
+
 class Application
 {
 public:
