@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\MiniLibs\APPLICATION\appState.cpp" />
+    <ClCompile Include="code\MiniLibs\INPUT\inputDetection.cpp" />
     <ClCompile Include="code\MiniLibs\LOGGER\loggerFileOutput.cpp" />
     <ClCompile Include="code\MiniLibs\LOGGER\loggerMessages.cpp" />
     <ClCompile Include="code\MiniLibs\LOGGER\loggerTextmanip.cpp" />
@@ -30,6 +31,7 @@
     <ClCompile Include="code\MiniLibs\physics\physicsPhysicalEntity.cpp" />
     <ClCompile Include="code\MiniLibs\physics\physicsPhysicalUnit.cpp" />
     <ClCompile Include="code\Tests\Test_application\testMain.cpp" />
+    <ClCompile Include="code\Tests\Test_input\testInputMain.cpp" />
     <ClCompile Include="code\Tests\Test_physics\testPhysicsMain.cpp" />
     <ClCompile Include="code\Tests\Test_visually\testVisuallyMain.cpp" />
   </ItemGroup>
@@ -37,6 +39,7 @@
     <ClInclude Include="code\MiniLibs\APPLICATION\application.h" />
     <ClInclude Include="code\MiniLibs\APPLICATION\appState.h" />
     <ClInclude Include="code\CoreUtils.h" />
+    <ClInclude Include="code\MiniLibs\INPUT\inputDetection.h" />
     <ClInclude Include="code\MiniLibs\LOGGER\logger.h" />
     <ClInclude Include="code\MiniLibs\physics\physics.h" />
     <ClInclude Include="code\Tests\Test_application\testApp.h" />

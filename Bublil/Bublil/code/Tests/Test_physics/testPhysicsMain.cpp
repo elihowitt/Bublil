@@ -1,10 +1,15 @@
 #include "testPhysicsAppStateImp.h"
 #include<ctime>
+
 /*
 Physics
 */
+
+
 int main_testPhysics()
 {
+
+
 	TestPhysicsApp *PhysicsTest = new TestPhysicsApp(nullptr);
 
 	AppState *PhysicsTestState_result = new TestPhysicsAppState_Result(PhysicsTest, nullptr);

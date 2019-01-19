@@ -192,7 +192,7 @@ public:
 	}
 };
 
-int main()
+int main_testVisually()
 {
 	TestVisually test;
 	if (test.Construct(1200, 600, 1, 1))

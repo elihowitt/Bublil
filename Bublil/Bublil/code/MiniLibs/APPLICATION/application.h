@@ -1,5 +1,7 @@
 #pragma once
 
+#include<vector>
+
 #include"appState.h"
 #include"../code/CoreUtils.h"
 
@@ -29,6 +31,7 @@ protected:
 	AppState* currentState, const *first;
 
 	virtual void initVals() {}
+	
 public:
 	//Idea is to loop calling 
 	//	state->Update()

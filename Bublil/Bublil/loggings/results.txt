@@ -1,3 +1,0 @@
-Num jumps: 2500.
-Num Explosions: 27500.
-Num sucktions: 1022500.

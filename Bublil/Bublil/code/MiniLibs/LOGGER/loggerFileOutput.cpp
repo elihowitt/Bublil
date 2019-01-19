@@ -10,6 +10,12 @@ lg::fout::~fout()
 {
 	runtimeEventFile.close();
 	resultFile.close();
+	std::ifstream res("./loggings/results.txt");
+	std::wstring str((std::istreambuf_iterator<char>(res)),
+		std::istreambuf_iterator<char>());
+
+	lg::dbout::basicLog(str.c_str());
+	res.close();
 }
 
 void lg::fout::logRuntimeEvent(const std::string& type, const std::string& detail)

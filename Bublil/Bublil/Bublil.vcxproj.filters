@@ -54,6 +54,12 @@
     <ClCompile Include="code\MiniLibs\LOGGER\loggerFileOutput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="code\MiniLibs\INPUT\inputDetection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Tests\Test_input\testInputMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\CoreUtils.h">
@@ -90,6 +96,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="code\MiniLibs\APPLICATION\application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MiniLibs\INPUT\inputDetection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

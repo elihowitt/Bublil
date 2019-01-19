@@ -4,8 +4,10 @@ class Application;
 
 class AppState
 {
+
 public:
 	AppState(AppState** next_p = nullptr, const int& numNexts_p = 1);
+	
 	virtual ~AppState();
 
 	AppState** next;

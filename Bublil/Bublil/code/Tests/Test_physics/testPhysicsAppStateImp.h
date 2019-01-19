@@ -52,6 +52,7 @@ public:
 
 class TestPhysicsAppState_Result : public TestPhysicsAppState
 {
+
 public:
 	TestPhysicsAppState_Result(TestPhysicsApp* machine_p, AppState** next_p = nullptr) :
 		TestPhysicsAppState(machine_p, next_p) {}
