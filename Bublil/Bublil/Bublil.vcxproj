@@ -42,6 +42,7 @@
     <ClInclude Include="code\MiniLibs\INPUT\inputDetection.h" />
     <ClInclude Include="code\MiniLibs\LOGGER\logger.h" />
     <ClInclude Include="code\MiniLibs\physics\physics.h" />
+    <ClInclude Include="code\MiniLibs\RENDER\loading\obj_loader.h" />
     <ClInclude Include="code\Tests\Test_application\testApp.h" />
     <ClInclude Include="code\Tests\Test_application\testAppState.h" />
     <ClInclude Include="code\Tests\Test_application\testAppStateImp.h" />
@@ -53,6 +54,10 @@
   <ItemGroup>
     <Text Include="loggings\results.txt" />
     <Text Include="loggings\runtimeEvents.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="code\MiniLibs\RENDER\loading\obj_loader.cpp" />
+    <None Include="code\Potentials\obj.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

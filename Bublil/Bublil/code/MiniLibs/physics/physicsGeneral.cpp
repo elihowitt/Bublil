@@ -14,7 +14,7 @@ phy::col::Collision phy::col::checks::sphere_sphere(const PhysicalEntity& a, con
 {
 	//Temporary dumb code.
 	Collision col;
-	col.didHit = distance(a.unit.position, b.unit.position) <= (*a.body.radius + *b.body.radius);
+	col.didHit = distance(*a.unit.position, *b.unit.position) <= (*a.body.radius + *b.body.radius);
 	return col;
 }
 

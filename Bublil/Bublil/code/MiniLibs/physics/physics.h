@@ -1,6 +1,7 @@
 #pragma once
 
 #include<glm\glm.hpp>
+#include"RENDER\loading\obj_loader.h"
 
 namespace phy
 {
@@ -91,6 +92,8 @@ namespace phy
 			glm::vec3* indicies;
 			int *indiciesSize;
 
+
+
 			//	Returns the sphere version of this body for simple checks.
 			//	After calling once the variables will be stored fo later checks.
 			CollisionBody getSphere()const;
@@ -123,6 +126,7 @@ namespace phy
 	public:
 		PhysicalUnit();
 		PhysicalUnit(const glm::vec3& pos, const glm::vec3& vel, const glm::vec3& acc, float mass_);
+		PhysicalUnit(glm::vec3* pos, const glm::vec3& vel, const glm::vec3& acc, float mass_);
 
 		PhysicalUnit(const PhysicalUnit& other);
 		~PhysicalUnit() {}
@@ -130,7 +134,7 @@ namespace phy
 		glm::vec3 totalForce;//Stores total forces applied to unit brfore update.
 
 							 //Kinematic properties:
-		glm::vec3 position;
+		glm::vec3 *position; //**Pointer for shared use with other classes.
 		glm::vec3 velocity;
 		glm::vec3 acceleration;
 		float mass;

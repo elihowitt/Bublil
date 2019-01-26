@@ -109,8 +109,8 @@ public:
 
 		for (std::pair<phy::PhysicalEntity, olc::Pixel>& c : circles)
 		{
-			DrawCircle(c.first.unit.position.x, c.first.unit.position.y, *c.first.body.radius, c.second);
-			glm::vec3 dir = glm::normalize(glm::vec3(GetMouseX(), GetMouseY(), 0) - c.first.unit.position);
+			DrawCircle(c.first.unit.position->x, c.first.unit.position->y, *c.first.body.radius, c.second);
+			glm::vec3 dir = glm::normalize(glm::vec3(GetMouseX(), GetMouseY(), 0) - *c.first.unit.position);
 			//Jumping.
 			if (jump)
 			{
@@ -127,7 +127,7 @@ public:
 
 				activeExplosion = true;
 				explosionStart =  30;
-				float dist = 0.5f*phy::distanceSquared(c.first.unit.position, glm::vec3(mouseWhenExplosion.x, mouseWhenExplosion.y, 0));
+				float dist = 0.5f*phy::distanceSquared(*c.first.unit.position, glm::vec3(mouseWhenExplosion.x, mouseWhenExplosion.y, 0));
 				glm::vec2 explosionFactor(phy::literals::giga(0.5), phy::literals::giga(1.5));
 				phy::PhysicalUnit::applyForce(c.first.unit, glm::vec3(- explosionFactor.x/ dist * (dir.x), - explosionFactor.y/ dist * (dir.y), 0));
 			}
@@ -145,17 +145,17 @@ public:
 			//Gravity.
 			phy::PhysicalUnit::applyForce(c.first.unit, glm::vec3(0, phy::literals::kilo(c.first.unit.mass), 0));
 
-			if (c.first.unit.position.x - *c.first.body.radius <= 0 || c.first.unit.position.x + *c.first.body.radius >= SCW)
+			if (c.first.unit.position->x - *c.first.body.radius <= 0 || c.first.unit.position->x + *c.first.body.radius >= SCW)
 			{
 				c.first.unit.velocity.x *= -1.f;
-				if (c.first.unit.position.x - *c.first.body.radius <= 0)
-					c.first.unit.position.x = *c.first.body.radius;
+				if (c.first.unit.position->x - *c.first.body.radius <= 0)
+					c.first.unit.position->x = *c.first.body.radius;
 				else
-					c.first.unit.position.x = SCW - *c.first.body.radius;
+					c.first.unit.position->x = SCW - *c.first.body.radius;
 			}
 		
 
-			if (c.first.unit.position.y + *c.first.body.radius >= SCH-1)
+			if (c.first.unit.position->y + *c.first.body.radius >= SCH-1)
 			{
 				c.first.unit.velocity.y *= -1 / 3.f;
 
@@ -167,7 +167,7 @@ public:
 				//	c.first.unit.velocity.x = 0;
 				//if (c.first.unit.velocity.y < 0.005)
 				//	c.first.unit.velocity.y = 0;
-				c.first.unit.position.y = SCH - *c.first.body.radius;
+				c.first.unit.position->y = SCH - *c.first.body.radius;
 			}
 
 			phy::PhysicalUnit::updatePosition(c.first.unit, fElapsedTime);
@@ -176,7 +176,7 @@ public:
 		//		c.first.unit.position.y = SCH - *c.first.body.radius;
 
 
-			*c.first.body.centre = c.first.unit.position;
+			*c.first.body.centre = *c.first.unit.position;
 		}
 		return true;
 	}

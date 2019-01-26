@@ -101,9 +101,16 @@
     <ClInclude Include="code\MiniLibs\INPUT\inputDetection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="code\MiniLibs\RENDER\loading\obj_loader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="loggings\runtimeEvents.txt" />
     <Text Include="loggings\results.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="code\Potentials\obj.h" />
+    <None Include="code\MiniLibs\RENDER\loading\obj_loader.cpp" />
   </ItemGroup>
 </Project>
