@@ -1,7 +1,8 @@
 #pragma once
 
 #include<glm\glm.hpp>
-#include"RENDER\loading\obj_loader.h"
+
+#include<vector>
 
 namespace phy
 {
@@ -10,111 +11,55 @@ namespace phy
 
 	namespace col
 	{
-		enum COLLISIONBODYTYPE
-		{
-			//A '-' means I hav yet to implement everything to-do with this body type.
-
-			/*-*/CBT_POINT = 1,	     //Zero dimensional, one position.
-									 /*
-									 'centre'
-									 */
-			/*-*/CBT_RAY,		     //One dimensional, two positions.
-									 /*
-									 'centre'
-									 'positions'
-									 */
-			/*-*/CBT_RAY_SEGMENT,    //One dimensional, two positions.
-									 /*
-									 'centre'
-									 'positions'
-									 */
-			/*-*/CBT_PLANE,		     //Two dimensional, three positions.
-									 /*
-									 'positions'
-									 */
-			/*-*/CBT_CIRCLE,	     //Two dimensional, one position & two other positions to form the plane & a radius.
-									 /*
-									 'positions'
-									 'radius'
-									 */
-			/*-*/CBT_TRIANGLE,	     //Two dimensional, three positions.
-									 /*
-									 'positions'
-									 */
-			/*-*/CBT_RECTANGLE,	     //Two dimensional, four positions.
-									 /*
-									 'positions'
-									 */
-			/*-*/CBT_SPHERE,	     //Three dimensional, one position & one radius.
-									 /*
-									 'centre'
-									 'radius'
-									 */
-			/*-*/CBT_BOX,		     //Three dimensional, eight positions.
-									 /*
-									 'positions'
-									 */
-			/*-*/CBT_SKELETON	     //Three dimensional, an array of positions & array of indicies building triangles.
-									 /*
-									 'positions'
-									 'positionsSize'
-									 'indicies'
-									 'indiciesSize'
-									 */
-		};
-
+		enum CBT { CBT_RAY = 1, CBT_AABB = 2, CBT_SKEL = 3 };
 
 		class CollisionBody
 		{
 		public:
-			CollisionBody(const COLLISIONBODYTYPE& type_,
-				const bool isStatic_,
-				glm::vec3* centre_, float* radius_,
-				glm::vec3* positions_, int* posSize,
-				glm::vec3* indicies_, int* indSize);
-			CollisionBody(const CollisionBody& other);
-			~CollisionBody();
+			CollisionBody(const CBT& type_);
+			CBT type;
+		};
 
-			CollisionBody& operator=(const CollisionBody& rhs);
+		class CollisionBodyAABB : public CollisionBody
+		{
+		public:
+			CollisionBodyAABB(const glm::vec3 max_, const glm::vec3& min_);
+			CollisionBodyAABB();
+			glm::vec3 max;
+			glm::vec3 min;
+		};
 
-			COLLISIONBODYTYPE CBT_type;	//Type of body.
+		class CollisionBodySkel :public CollisionBodyAABB
+		{
+		public:
+			CollisionBodySkel(const std::vector<glm::vec3> skelPositions_, const std::vector<glm::vec3> skelIndicies_);
+			
+			std::vector<glm::vec3> skelPositions;
+			std::vector<glm::vec3> skelIndicies;
+		};
 
-			bool isStatic;	//Does the body stay allways in place (like a wall).
-
-							/* The following will be initialized & used
-							*	deppending on this body type.
-							*  For example a 'BOX' will not need a radius
-							*	so no need to initiate nor use said field.	*/
-			glm::vec3* centre;
-			float* radius;
-			glm::vec3* positions;
-			int *positionsSize;
-			glm::vec3* indicies;
-			int *indiciesSize;
-
-
-
-			//	Returns the sphere version of this body for simple checks.
-			//	After calling once the variables will be stored fo later checks.
-			CollisionBody getSphere()const;
+		class CollisionBodyRay: public CollisionBody
+		{
+		public:
+			CollisionBodyRay(const glm::vec3& start_, const glm::vec3& direction_, const glm::vec3& distance_);
+			glm::vec3 start;
+			glm::vec3 direction;
+			glm::vec3 distance;
 		};
 
 		class Collision
 		{
 		public:
 			Collision() {}
+			Collision(const bool& didHit_, const glm::vec3& hitPoint_) :
+				didHit(didHit_), hitPoint(hitPoint_) {}
 			~Collision() {}
 
-			bool didHit;		//  If a collision actually occurred.
+			//  If a collision actually occurred.
+			bool didHit;
 
-								/* Pointers to the bodys hit.
-								*  Used for applying the affects of the hit
-								*  on thes bodys.                            */
-			CollisionBody *body1, *body2;
-
-			glm::vec3 hitPoint; //  The point of collision.
-			glm::vec3 distance;	//	For projectile collisions like shooting. 
-								//	Stores distance from 'shooter' to 'target'.
+			//  The point of collision.
+			glm::vec3 hitPoint; 
 
 			explicit operator bool() const { return didHit; }
 		};
@@ -149,57 +94,44 @@ namespace phy
 	class PhysicalEntity
 	{
 	public:
-		PhysicalEntity(const PhysicalUnit& unit_, const col::CollisionBody& body_) :
+		PhysicalEntity(const PhysicalUnit& unit_, col::CollisionBody* body_) :
 			unit(unit_), body(body_) {}
+		PhysicalEntity(const PhysicalUnit& unit_, const col::CollisionBody& body_) :
+			unit(unit_) 
+		{
+			body = new col::CollisionBody(body_);
+		}
 		//PhysicalEntity(const PhysicalUnit& unit, const col::CollisionBody& collisionBody) {}
 		//PhysicalEntity(const PhysicalEntity& other) {}
 
 		~PhysicalEntity() {}
 
 		PhysicalUnit unit;
-		col::CollisionBody body;
+		col::CollisionBody *body;
 	};
 
 	namespace col
 	{
-		namespace checks
-		{
-			Collision sphere_sphere(const PhysicalEntity& a, const PhysicalEntity& b);
-		}
-		bool doCollideSimple(const PhysicalEntity& a, const PhysicalEntity& b);
-		bool doCollideSimple(const CollisionBody& a, const CollisionBody& b);
+		bool testEntities	(const PhysicalEntity& a, const PhysicalEntity& b);
+		bool testAABBs		(const PhysicalEntity& a, const PhysicalEntity& b);
+		bool testSkels		(const PhysicalEntity& a, const PhysicalEntity& b);
+
+		Collision doCollide		(const CollisionBodyRay& a, const PhysicalEntity& b);
+		bool doCollideAABB		(const CollisionBodyRay& a, const PhysicalEntity& b);
+		Collision doCollideSkel	(const CollisionBodyRay& a, const PhysicalEntity& b);
 	}
 	namespace literals
-	{
-		template<typename T>
-		float nano(T t)
-		{
-			return t / 1000000000;
-		}
-		template<typename T>
-		float micro(T t)
-		{
-			return t / 1000000;
-		}
-		template<typename T>
-		float milli(T t)
-		{
-			return t / 100;
-		}
-		template<typename T>
-		T kilo(T t)
-		{
-			return t * 1000;
-		}
-		template<typename T>
-		T mega(T t)
-		{
-			return t * 1000000;
-		}
-		template<typename T>
-		T giga(T t)
-		{
-			return t * 1000000000;
-		}
+	{    
+		float operator""nano(long double t);
+
+		float operator""micro(long double t);
+
+		float operator""milli(long double t);
+
+		float operator""kilo(long double t);
+
+		float operator""mega(long double t);
+
+		float operator""giga(long double t);
 	}
 }

@@ -3,7 +3,8 @@
 #include<vector>
 
 #include"appState.h"
-#include"../code/CoreUtils.h"
+#include"../code/Globals.h"
+#include"INPUT\inputDetection.h"
 
 //enum STATE_FLAGS
 //{
@@ -33,6 +34,8 @@ protected:
 	virtual void initVals() {}
 	
 public:
+
+	input::InputDetector inDetec;
 	//Idea is to loop calling 
 	//	state->Update()
 	//	state->Draw()

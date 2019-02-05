@@ -19,44 +19,56 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\MiniLibs\RENDER\core\display.cpp" />
+    <ClCompile Include="code\MiniLibs\RENDER\specialties\GUI.cpp" />
+    <ClCompile Include="code\MiniLibs\RENDER\core\mesh.cpp" />
+    <ClCompile Include="code\MiniLibs\RENDER\loading\obj_loader.cpp" />
+    <ClCompile Include="code\MiniLibs\RENDER\core\shader.cpp" />
+    <ClCompile Include="code\MiniLibs\RENDER\specialties\skybox.cpp" />
+    <ClCompile Include="code\MiniLibs\RENDER\loading\stb_image.c" />
+    <ClCompile Include="code\MiniLibs\RENDER\core\texture.cpp" />
     <ClCompile Include="code\MiniLibs\APPLICATION\appState.cpp" />
     <ClCompile Include="code\MiniLibs\INPUT\inputDetection.cpp" />
     <ClCompile Include="code\MiniLibs\LOGGER\loggerFileOutput.cpp" />
     <ClCompile Include="code\MiniLibs\LOGGER\loggerMessages.cpp" />
     <ClCompile Include="code\MiniLibs\LOGGER\loggerTextmanip.cpp" />
     <ClCompile Include="code\MiniLibs\LOGGER\loggerGeneral.cpp" />
-    <ClCompile Include="code\MiniLibs\physics\physicsCollision.cpp" />
+    <ClCompile Include="code\MiniLibs\physics\physicsCollisionTests.cpp" />
     <ClCompile Include="code\MiniLibs\physics\physicsCollisionBody.cpp" />
-    <ClCompile Include="code\MiniLibs\physics\physicsGeneral.cpp" />
     <ClCompile Include="code\MiniLibs\physics\physicsPhysicalEntity.cpp" />
     <ClCompile Include="code\MiniLibs\physics\physicsPhysicalUnit.cpp" />
+    <ClCompile Include="code\MiniLibs\RENDER\renderManager.cpp" />
     <ClCompile Include="code\Tests\Test_application\testMain.cpp" />
     <ClCompile Include="code\Tests\Test_input\testInputMain.cpp" />
-    <ClCompile Include="code\Tests\Test_physics\testPhysicsMain.cpp" />
-    <ClCompile Include="code\Tests\Test_visually\testVisuallyMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="code\MiniLibs\RENDER\core\camera.h" />
+    <ClInclude Include="code\MiniLibs\RENDER\core\display.h" />
+    <ClInclude Include="code\MiniLibs\RENDER\specialties\GUI.h" />
+    <ClInclude Include="code\MiniLibs\RENDER\core\mesh.h" />
+    <ClInclude Include="code\MiniLibs\RENDER\loading\obj_loader.h" />
+    <ClInclude Include="code\MiniLibs\RENDER\specialties\quade.h" />
+    <ClInclude Include="code\MiniLibs\RENDER\core\shader.h" />
+    <ClInclude Include="code\MiniLibs\RENDER\specialties\skybox.h" />
+    <ClInclude Include="code\MiniLibs\RENDER\loading\stb_image.h" />
+    <ClInclude Include="code\MiniLibs\RENDER\core\texture.h" />
+    <ClInclude Include="code\MiniLibs\RENDER\core\transform.h" />
     <ClInclude Include="code\MiniLibs\APPLICATION\application.h" />
     <ClInclude Include="code\MiniLibs\APPLICATION\appState.h" />
-    <ClInclude Include="code\CoreUtils.h" />
+    <ClInclude Include="code\Globals.h" />
     <ClInclude Include="code\MiniLibs\INPUT\inputDetection.h" />
     <ClInclude Include="code\MiniLibs\LOGGER\logger.h" />
     <ClInclude Include="code\MiniLibs\physics\physics.h" />
-    <ClInclude Include="code\MiniLibs\RENDER\loading\obj_loader.h" />
+    <ClInclude Include="code\MiniLibs\RENDER\renderManager.h" />
     <ClInclude Include="code\Tests\Test_application\testApp.h" />
     <ClInclude Include="code\Tests\Test_application\testAppState.h" />
     <ClInclude Include="code\Tests\Test_application\testAppStateImp.h" />
-    <ClInclude Include="code\Tests\Test_physics\testPhysicsApp.h" />
-    <ClInclude Include="code\Tests\Test_physics\testPhysicsAppState.h" />
-    <ClInclude Include="code\Tests\Test_physics\testPhysicsAppStateImp.h" />
-    <ClInclude Include="code\Tests\Test_visually\olc.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="loggings\results.txt" />
     <Text Include="loggings\runtimeEvents.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="code\MiniLibs\RENDER\loading\obj_loader.cpp" />
     <None Include="code\Potentials\obj.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

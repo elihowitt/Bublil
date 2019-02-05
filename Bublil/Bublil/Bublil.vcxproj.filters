@@ -15,25 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="code\Tests\Test_physics\testPhysicsMain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="code\Tests\Test_application\testMain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="code\Tests\Test_visually\testVisuallyMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="code\MiniLibs\physics\physicsPhysicalUnit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="code\MiniLibs\physics\physicsPhysicalEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="code\MiniLibs\physics\physicsGeneral.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="code\MiniLibs\physics\physicsCollision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="code\MiniLibs\physics\physicsCollisionBody.cpp">
@@ -60,20 +48,38 @@
     <ClCompile Include="code\Tests\Test_input\testInputMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="code\MiniLibs\physics\physicsCollisionTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MiniLibs\RENDER\renderManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MiniLibs\RENDER\core\shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MiniLibs\RENDER\core\mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MiniLibs\RENDER\core\display.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MiniLibs\RENDER\core\texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MiniLibs\RENDER\loading\stb_image.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MiniLibs\RENDER\loading\obj_loader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MiniLibs\RENDER\specialties\GUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MiniLibs\RENDER\specialties\skybox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="code\CoreUtils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="code\Tests\Test_physics\testPhysicsApp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="code\Tests\Test_physics\testPhysicsAppState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="code\Tests\Test_physics\testPhysicsAppStateImp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="code\Tests\Test_application\testApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -81,9 +87,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="code\Tests\Test_application\testAppStateImp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="code\Tests\Test_visually\olc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="code\MiniLibs\physics\physics.h">
@@ -101,7 +104,43 @@
     <ClInclude Include="code\MiniLibs\INPUT\inputDetection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="code\Globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MiniLibs\RENDER\renderManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MiniLibs\RENDER\core\shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MiniLibs\RENDER\core\mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MiniLibs\RENDER\core\display.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MiniLibs\RENDER\core\camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MiniLibs\RENDER\core\transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MiniLibs\RENDER\core\texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MiniLibs\RENDER\loading\stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="code\MiniLibs\RENDER\loading\obj_loader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MiniLibs\RENDER\specialties\skybox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MiniLibs\RENDER\specialties\GUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MiniLibs\RENDER\specialties\quade.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -111,6 +150,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="code\Potentials\obj.h" />
-    <None Include="code\MiniLibs\RENDER\loading\obj_loader.cpp" />
   </ItemGroup>
 </Project>

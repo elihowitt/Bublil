@@ -3,8 +3,6 @@
 #include<SDL2\SDL.h>
 #undef main
 
-class Application;
-
 namespace input
 {
 	enum MOUSEBUTTON
@@ -49,25 +47,4 @@ namespace input
 		int getMouseY()const;
 		input::MOUSEWHEELEVENT getMouseWheelState()const;
 	};
-
-
-
-
-
-
-
-
-
-
-
-
-
-	//static bool quit = false;
-
-	//void update();
-	////MOUSEWHEELEVENT update();
-	//void cleanUp();
-
-	//bool KeyPressed(SDL_Scancode key);
-	//bool KeyClicked(MOUSEBUTTON button);
 }
