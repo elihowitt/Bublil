@@ -40,10 +40,14 @@
     <ClCompile Include="code\MiniLibs\RENDER\renderManager.cpp" />
     <ClCompile Include="code\Tests\Test_application\testMain.cpp" />
     <ClCompile Include="code\Tests\Test_input\testInputMain.cpp" />
+    <ClCompile Include="code\MiniLibs\RENDER\core\shaders\generalShader.cpp" />
+    <ClCompile Include="code\MiniLibs\RENDER\core\shaders\guiShader.cpp" />
+    <ClCompile Include="code\MiniLibs\RENDER\core\shaders\skyboxShader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\MiniLibs\RENDER\core\camera.h" />
     <ClInclude Include="code\MiniLibs\RENDER\core\display.h" />
+    <ClInclude Include="code\MiniLibs\RENDER\core\shaderUpdatePack.h" />
     <ClInclude Include="code\MiniLibs\RENDER\specialties\GUI.h" />
     <ClInclude Include="code\MiniLibs\RENDER\core\mesh.h" />
     <ClInclude Include="code\MiniLibs\RENDER\loading\obj_loader.h" />
@@ -63,10 +67,21 @@
     <ClInclude Include="code\Tests\Test_application\testApp.h" />
     <ClInclude Include="code\Tests\Test_application\testAppState.h" />
     <ClInclude Include="code\Tests\Test_application\testAppStateImp.h" />
+    <ClInclude Include="code\MiniLibs\RENDER\core\shaders\generalShader.h" />
+    <ClInclude Include="code\MiniLibs\RENDER\core\shaders\guiShader.h" />
+    <ClInclude Include="code\MiniLibs\RENDER\core\shaders\skyboxShader.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="loggings\results.txt" />
     <Text Include="loggings\runtimeEvents.txt" />
+    <Text Include="res\shaders\basicShader.fs.txt" />
+    <Text Include="res\shaders\basicShader.vs.txt" />
+    <Text Include="res\shaders\GUIShader.fs.txt" />
+    <Text Include="res\shaders\GUIShader.vs.txt" />
+    <Text Include="res\shaders\skyBoxShader.fs.txt" />
+    <Text Include="res\shaders\skyBoxShader.vs.txt" />
+    <Text Include="res\shaders\terrainShader.fs.txt" />
+    <Text Include="res\shaders\terrainShader.vs.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="code\Potentials\obj.h" />

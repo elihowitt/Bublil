@@ -6,6 +6,9 @@
 
 #include"../code/Globals.h"
 
+#include"RENDER\core\shaders\generalShader.h"
+#include"RENDER\core\shaders\guiShader.h"
+
 namespace render
 {
 
@@ -15,6 +18,8 @@ namespace render
 		RenderManager(const std::string meshFiles[MESHLIST::NUM_MESHES], const std::string textureFiles[TEXTURELIST::NUM_TEXTURES], const std::string shaderFiles[SHADERLIST::NUM_SHADERES]);
 		~RenderManager();
 	private:
+		static Shader* CreateCustomeShaderByType(const SHADERLIST& type, const std::string& filename);
+
 		Mesh* arr_meshs[MESHLIST::NUM_MESHES];
 		Texture* arr_textures[TEXTURELIST::NUM_TEXTURES];
 		Shader* arr_shaders[SHADERLIST::NUM_SHADERES];
@@ -23,18 +28,9 @@ namespace render
 
 		void tryBind(const RenderPack& pack);
 
-		//template<class T, class... ARGS>
-		//void updateShader(const SHADERLIST& id, ARGS... args)
-		//{
-		//	(T*)arr_shaders[id]->Update(args);
-		//}
+		void updateShader(const ShaderUpdatePack& pack, const SHADERLIST& type);
+
 	public:
-		//template<class T, class... ARGS>
-		void render(const RenderPack& pack/*, ARGS... args*/)
-		{
-			tryBind(pack);
-			//updateShader<T, ARGS>(pack.shader_id, shaderType, args);
-			arr_meshs[pack.mesh_id]->Draw();
-		}
+		void render(const RenderPack& bind, const ShaderUpdatePack& update);
 	};
 }

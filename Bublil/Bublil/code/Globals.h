@@ -35,8 +35,8 @@ enum TEXTURELIST
 enum SHADERLIST
 {
 	//Must start at 0.
-	SHADER_TREE,
-
+	GENERAL_SHADER,
+	GUI_SHADER,
 
 
 	//Must be last

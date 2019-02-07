@@ -49,8 +49,7 @@ public:
 		glBindVertexArray(0);
 	}
 private:
-
-
+	
 	GLuint m_vertexArrayObject;
 	GLuint m_vertexArrayBuffers[NUM_BUFFER];
 	unsigned int m_drawCount;

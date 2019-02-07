@@ -1,0 +1,16 @@
+#version 140
+
+attribute vec2 position;
+attribute vec2 texCoord;
+
+varying vec2 texCoord0;
+
+uniform vec2 scale;
+uniform vec2 pos;
+
+void main()
+{
+	vec2 finalPos = position * scale;
+	gl_Position = finalPos + pos;
+	texCoord0 = texCoord;
+}

@@ -7,27 +7,32 @@
 #include"quade.h"
 
 #include"RENDER/loading/stb_image.h"
+#include"RENDER/core/shaders/guiShader.h"
 
 class GUI
 {
 public:
-	GUI(const std::string& texturefilename, const glm::vec2& position, const glm::vec2& scale);
+	GUI(const std::string& texturefilename, const glm::vec2& position, const glm::vec2& scale, const std::string& shaderFile);
 	~GUI();		
 
-	void Bind(unsigned int unit = 0);
-
-	void Draw();
+	void render();
 protected:
 private:
+
+	void bind(unsigned int unit = 0);
+	
+	Shader * shader;
+
 	GLuint m_texture;
 
 	Quade m_quade;
-	//GLuint m_vertexArrayObject;
 
 	glm::vec2 m_position;
 	glm::vec2 m_scale   ;
 public:
 	glm::vec2& GetPos() { return m_position; }
 	glm::vec2& GetScale() { return m_scale; }
+
+	void update(const glm::vec2& position, const glm::vec2& scale);
 };
 

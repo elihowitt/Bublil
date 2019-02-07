@@ -4,7 +4,7 @@ static GLuint LoadCubemap(std::vector<std::string> faces);
 
 Skybox::Skybox(const std::string& shader, const std::string& path, const std::string& pre, const std::string& suf)
 {
-	this->shader = new Shader(shader);
+	this->shader = new SkyboxShader(shader);
 
 	std::vector<std::string> faces;
 	faces.push_back({ path + pre + "right" + suf });
@@ -69,30 +69,30 @@ Skybox::Skybox(const std::string& shader, const std::string& path, const std::st
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid *)0);
 }
 
-
 Skybox::~Skybox()
 {
 }
 
-void Skybox::Bind()
+void Skybox::bind()
 {
-	shader->Bind();
+	shader->bind();
 	glBindTexture(GL_TEXTURE_CUBE_MAP, texture);
 }
-void Skybox::Update(const Camera& camera)
+void Skybox::update(const ShaderUpdatePack& pack)
 {
-	shader->UpdateCube(camera);
+	((SkyboxShader*)shader)->update(pack);
 }
-void Skybox::Render()
+void Skybox::render(const ShaderUpdatePack& pack)
 {
+	bind();
+	update(pack);
+
 	glDepthFunc(GL_EQUAL);
 	glBindVertexArray(VAO);
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 	glBindVertexArray(0);
 	glDepthFunc(GL_LESS);
 }
-
-
 
 static GLuint LoadCubemap(std::vector<std::string> faces)
 {
