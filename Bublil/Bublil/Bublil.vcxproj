@@ -38,6 +38,7 @@
     <ClCompile Include="code\MiniLibs\physics\physicsPhysicalEntity.cpp" />
     <ClCompile Include="code\MiniLibs\physics\physicsPhysicalUnit.cpp" />
     <ClCompile Include="code\MiniLibs\RENDER\renderManager.cpp" />
+    <ClCompile Include="code\Tests\GraphicalTest\graphicalTestMain.cpp" />
     <ClCompile Include="code\Tests\Test_application\testMain.cpp" />
     <ClCompile Include="code\Tests\Test_input\testInputMain.cpp" />
     <ClCompile Include="code\MiniLibs\RENDER\core\shaders\generalShader.cpp" />

@@ -87,6 +87,9 @@
     <ClCompile Include="code\MiniLibs\RENDER\core\shaders\skyboxShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="code\Tests\GraphicalTest\graphicalTestMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\Tests\Test_application\testApp.h">

@@ -22,7 +22,7 @@ render::RenderManager::RenderManager(const std::string meshFiles[MESHLIST::NUM_M
 		arr_meshs[i] = new Mesh(meshFiles[i]);
 
 	for (int i = 0; i < TEXTURELIST::NUM_TEXTURES; ++i)
-		arr_textures[i] = new Texture(meshFiles[i]);
+		arr_textures[i] = new Texture(textureFiles[i]);
 
 	for (int i = 0; i < SHADERLIST::NUM_SHADERES; ++i)
 		arr_shaders[i] = CreateCustomeShaderByType(to_shaderType(i), shaderFiles[i]);

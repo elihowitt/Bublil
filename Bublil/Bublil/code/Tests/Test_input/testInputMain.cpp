@@ -5,7 +5,7 @@
 using namespace input;
 
 #undef main
-int main()
+int main_testInput()
 //int main_checkInput()
 {
 
