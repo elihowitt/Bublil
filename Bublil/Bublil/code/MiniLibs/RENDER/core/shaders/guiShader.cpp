@@ -1,6 +1,6 @@
 #include "guiShader.h"
 
-GUIShader::GUIShader(const std::string& filename)
+render::shaders::GUIShader::GUIShader(const std::string& filename)
 {
 	m_program = glCreateProgram();
 	m_shaders[0] = CreateShader(LoadShader(filename + ".vs.txt"), GL_VERTEX_SHADER);
@@ -22,7 +22,7 @@ GUIShader::GUIShader(const std::string& filename)
 	m_uniforms[SCALE_U] = glGetUniformLocation(m_program, "scale");
 }
 
-GUIShader::~GUIShader()
+render::shaders::GUIShader::~GUIShader()
 {
 	for (unsigned int i = 0; i < NUM_SHADERS; i++)
 	{
@@ -34,9 +34,9 @@ GUIShader::~GUIShader()
 
 }
 
-void GUIShader::update(const ShaderUpdatePack& pack)
+void render::shaders::GUIShader::update(const ShaderUpdatePack& pack)
 {
-	glm::vec2 pos = pack.vectors[0];
+	glm::vec3 pos = pack.vectors[0];
 	glm::vec2 scale = pack.vectors[1];
 
 	glUniform2fv(m_uniforms[POS_U], 1, &pos[0]);

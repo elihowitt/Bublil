@@ -122,16 +122,16 @@ namespace phy
 	}
 	namespace literals
 	{    
-		float operator""nano(long double t);
+		long double operator""_nano(long double t);
 
-		float operator""micro(long double t);
+		long double operator""_micro(long double t);
 
-		float operator""milli(long double t);
+		long double operator""_milli(long double t);
 
-		float operator""kilo(long double t);
+		long double operator""_kilo(long double t);
 
-		float operator""mega(long double t);
+		long double operator""_mega(long double t);
 
-		float operator""giga(long double t);
+		long double operator""_giga(long double t);
 	}
 }

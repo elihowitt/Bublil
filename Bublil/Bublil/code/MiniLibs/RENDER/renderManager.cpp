@@ -1,18 +1,15 @@
 #include "renderManager.h"
 
-static SHADERLIST to_shaderType(const int& num)
+static render::SHADERLIST to_shaderType(const int& num)
 {
 	switch (num)
 	{
-	case SHADERLIST::GENERAL_SHADER:
-		return SHADERLIST::GENERAL_SHADER;
+	case render::SHADERLIST::GENERAL_SHADER:
+		return render::SHADERLIST::GENERAL_SHADER;
 
-	case SHADERLIST::GUI_SHADER:
-		return SHADERLIST::GUI_SHADER;
-
-	case SHADERLIST::NUM_SHADERES:
+	case render::SHADERLIST::NUM_SHADERES:
 	default:
-		return SHADERLIST::NUM_SHADERES;
+		return render::SHADERLIST::NUM_SHADERES;
 	}
 }
 
@@ -40,19 +37,17 @@ render::RenderManager::~RenderManager()
 		delete arr_shaders[i];
 }
 
-Shader * render::RenderManager::CreateCustomeShaderByType(const SHADERLIST & type, const std::string & filename)
+render::Shader * render::RenderManager::CreateCustomeShaderByType(const SHADERLIST & type, const std::string & filename)
 {
 	switch (type)
 	{	
 	case SHADERLIST::GENERAL_SHADER:
-		return new GeneralShader(filename);
-		break;
-	case SHADERLIST::GUI_SHADER:
-		return new GUIShader(filename);
+		return new render::shaders::GeneralShader(filename);
 		break;
 
 	case SHADERLIST::NUM_SHADERES:
 	default:
+		return nullptr;
 		break;
 	}
 }
@@ -76,10 +71,7 @@ void render::RenderManager::updateShader(const ShaderUpdatePack & pack, const SH
 	switch (type)
 	{	
 	case SHADERLIST::GENERAL_SHADER:
-		((GeneralShader*)arr_shaders[type])->update(pack);
-		break;
-	case SHADERLIST::GUI_SHADER:
-		((GUIShader*)arr_shaders[type])->update(pack);
+		((render::shaders::GeneralShader*)arr_shaders[type])->update(pack);
 		break;
 
 	case SHADERLIST::NUM_SHADERES:
@@ -94,5 +86,10 @@ void render::RenderManager::render(const RenderPack & bind, const ShaderUpdatePa
 	updateShader(update, bind.shader_id);
 
 	arr_meshs[bind.mesh_id]->Draw();
+}
+
+void render::RenderManager::render(const Drawable & drawable)
+{
+	render(drawable.renderPack, drawable.updatePack);
 }
 

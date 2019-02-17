@@ -158,13 +158,13 @@
     <ClInclude Include="code\MiniLibs\RENDER\core\shaders\generalShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="code\MiniLibs\RENDER\core\shaderUpdatePack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="code\MiniLibs\RENDER\core\shaders\guiShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="code\MiniLibs\RENDER\core\shaders\skyboxShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MiniLibs\RENDER\renderGloabals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

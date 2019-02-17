@@ -3,7 +3,7 @@
 
 #include<iostream>
 
-Display::Display(int width, int height, const std::string& title)
+render::Display::Display(int width, int height, const std::string& title)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 
@@ -33,14 +33,14 @@ Display::Display(int width, int height, const std::string& title)
 	glCullFace(GL_BACK);
 }
 
-Display::~Display()
+render::Display::~Display()
 {
 	SDL_GL_DeleteContext(m_glContext);
 	SDL_DestroyWindow(m_window);
 	SDL_Quit();
 }
 
-void Display::Update()
+void render::Display::Update()
 {
 	SDL_GL_SwapWindow(m_window);
 
@@ -56,12 +56,12 @@ void Display::Update()
 
 }
 
-bool Display::IsClosed()
+bool render::Display::IsClosed()
 {
 	return m_isClosed;
 }
 
-void Display::Clear(float r, float g, float b, float a)
+void render::Display::Clear(float r, float g, float b, float a)
 {
 	glClearColor(r, g, b, a);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

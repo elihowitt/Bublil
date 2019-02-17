@@ -3,9 +3,9 @@
 
 static bool InitTexture(const std::string& filename, GLuint& tex);
 
-GUI::GUI(const std::string& texfile, const glm::vec2& position, const glm::vec2& scale, const std::string& shaderFile)
+render::specialties::GUI::GUI(const std::string& texfile, const glm::vec2& position, const glm::vec2& scale, const std::string& shaderFile)
 {
-	shader = new GUIShader(shaderFile);
+	shader = new render::shaders::GUIShader(shaderFile);
 
 	m_position = position;
 	m_scale = scale;
@@ -35,12 +35,12 @@ static bool InitTexture(const std::string& filename, GLuint& tex)
 	return true;
 }
 
-GUI::~GUI()
+render::specialties::GUI::~GUI()
 {
 	glDeleteTextures(1, &m_texture);
 }
 
-void GUI::bind(unsigned int unit)
+void render::specialties::GUI::bind(unsigned int unit)
 {
 	assert(unit >= 0 && unit <= 31);
 	
@@ -48,13 +48,13 @@ void GUI::bind(unsigned int unit)
 	glBindTexture(GL_TEXTURE_2D, m_texture);
 }
 
-void GUI::update(const glm::vec2 & position, const glm::vec2 & scale)
+void render::specialties::GUI::update(const glm::vec2 & position, const glm::vec2 & scale)
 {
 	m_position = position;
 	m_scale = scale;
 }
 
-void GUI::render()
+void render::specialties::GUI::render()
 {
 	bind(0);
 
@@ -62,7 +62,7 @@ void GUI::render()
 	pack.vectors.push_back(glm::vec3(m_position,0));
 	pack.vectors.push_back(glm::vec3(m_scale, 0));
 
-	((GUIShader*)shader)->update(pack);
+	((render::shaders::GUIShader*)shader)->update(pack);
 
 	m_quade.Draw();
 }

@@ -35,8 +35,10 @@ namespace input
 	private:
 
 	 const Uint8* keyboardStates;
-	 structMouseState mouseState;
+	 structMouseState mouseState_curr, mouseState_prev;
 	 MOUSEWHEELEVENT mouseWheelState;
+
+	 float timeCurr, timePrev, timeDelta;
 	public:
 		void update();
 
@@ -46,5 +48,10 @@ namespace input
 		int getMouseX()const;
 		int getMouseY()const;
 		input::MOUSEWHEELEVENT getMouseWheelState()const;
+
+		int getDeltaMouseX()const;
+		int getDeltaMouseY()const;
+
+		float getTimeDelta()const;
 	};
 }

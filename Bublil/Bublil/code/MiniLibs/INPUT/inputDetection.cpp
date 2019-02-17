@@ -2,6 +2,12 @@
 
 void input::InputDetector::update()
 {
+	mouseState_prev = mouseState_curr;
+
+	timePrev = timeCurr;
+	timeCurr = SDL_GetTicks();
+	timeDelta = timeCurr - timePrev;
+
 	mouseWheelState = MSW_NOTHING;
 	while (SDL_PollEvent(&input::inputEvent))
 	{
@@ -17,7 +23,7 @@ void input::InputDetector::update()
 
 
 	keyboardStates = SDL_GetKeyboardState(NULL);
-	mouseState.state = SDL_GetMouseState(&mouseState.x, &mouseState.y);
+	mouseState_curr.state = SDL_GetMouseState(&mouseState_curr.x, &mouseState_curr.y);
 }
 
 bool input::InputDetector::KeyDown(SDL_Scancode key) const
@@ -27,20 +33,35 @@ bool input::InputDetector::KeyDown(SDL_Scancode key) const
 
 bool input::InputDetector::ButtonClicked(input::MOUSEBUTTON button) const
 {
-	return mouseState.state & SDL_BUTTON(button);
+	return mouseState_curr.state & SDL_BUTTON(button);
 }
 
 int input::InputDetector::getMouseX() const
 {
-	return mouseState.x;
+	return mouseState_curr.x;
 }
 
 int input::InputDetector::getMouseY() const
 {
-	return mouseState.y;
+	return mouseState_curr.y;
 }
 
 input::MOUSEWHEELEVENT input::InputDetector::getMouseWheelState() const
 {
 	return mouseWheelState;
+}
+
+int input::InputDetector::getDeltaMouseX() const
+{
+	return mouseState_curr.x - mouseState_prev.x;
+}
+
+int input::InputDetector::getDeltaMouseY() const
+{
+	return mouseState_curr.y - mouseState_prev.y;
+}
+
+float input::InputDetector::getTimeDelta() const
+{
+	return timeDelta / 1000.f;
 }

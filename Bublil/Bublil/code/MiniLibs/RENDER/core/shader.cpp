@@ -1,6 +1,6 @@
 #include "shader.h"
 
-GLuint Shader::CreateShader(const std::string& text, GLenum shaderType)
+GLuint render::Shader::CreateShader(const std::string& text, GLenum shaderType)
 {
 	GLuint shader = glCreateShader(shaderType);
 
@@ -21,12 +21,12 @@ GLuint Shader::CreateShader(const std::string& text, GLenum shaderType)
 	return shader;
 }
 
-void Shader::bind()
+void render::Shader::bind()
 {
 	glUseProgram(m_program);	
 }
 
-std::string Shader::LoadShader(const std::string& fileName)
+std::string render::Shader::LoadShader(const std::string& fileName)
 {
 	std::ifstream file;
 	file.open((fileName).c_str());
@@ -50,7 +50,7 @@ std::string Shader::LoadShader(const std::string& fileName)
 	return output;
 }
 
-void Shader::CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage)
+void render::Shader::CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage)
 {
 	GLint success = 0;
 	GLchar error[1024] = { 0 };

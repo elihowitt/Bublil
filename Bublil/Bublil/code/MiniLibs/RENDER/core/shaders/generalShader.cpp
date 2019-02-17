@@ -1,6 +1,6 @@
 #include "generalShader.h"
 
-GeneralShader::GeneralShader(const std::string& filename)
+render::shaders::GeneralShader::GeneralShader(const std::string& filename)
 {
 	m_program = glCreateProgram();
 	m_shaders[0] = CreateShader(LoadShader(filename + ".vs.txt"), GL_VERTEX_SHADER);
@@ -28,7 +28,7 @@ GeneralShader::GeneralShader(const std::string& filename)
 	m_uniforms[SKYCOLOUR_U] = glGetUniformLocation(m_program, "skyColour");
 }
 
-GeneralShader::~GeneralShader()
+render::shaders::GeneralShader::~GeneralShader()
 {
 	for (unsigned int i = 0; i < NUM_SHADERS; i++)
 	{
@@ -39,7 +39,7 @@ GeneralShader::~GeneralShader()
 	glDeleteProgram(m_program);
 }
 
-void GeneralShader::update(const ShaderUpdatePack& pack)
+void render::shaders::GeneralShader::update(const ShaderUpdatePack& pack)
 {
 	glm::mat4 model = pack.transforms[0].GetModel();
 	glm::mat4 viewAndProjection = pack.camera->GetViewProjection();

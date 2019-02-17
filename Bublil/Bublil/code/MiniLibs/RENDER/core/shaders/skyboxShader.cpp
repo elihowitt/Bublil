@@ -1,6 +1,6 @@
 #include "skyboxShader.h"
 
-SkyboxShader::SkyboxShader(const std::string& filename)
+render::shaders::SkyboxShader::SkyboxShader(const std::string& filename)
 {
 	m_program = glCreateProgram();
 	m_shaders[0] = CreateShader(LoadShader(filename + ".vs.txt"), GL_VERTEX_SHADER);
@@ -29,7 +29,7 @@ SkyboxShader::SkyboxShader(const std::string& filename)
 
 }
 
-SkyboxShader::~SkyboxShader()
+render::shaders::SkyboxShader::~SkyboxShader()
 {
 	for (unsigned int i = 0; i < NUM_SHADERS; i++)
 	{
@@ -41,7 +41,7 @@ SkyboxShader::~SkyboxShader()
 
 }
 
-void SkyboxShader::update(const ShaderUpdatePack& pack)
+void render::shaders::SkyboxShader::update(const ShaderUpdatePack& pack)
 {
 	glm::mat4 viewMat = glm::mat4(glm::mat3(pack.camera->GetView()));
 	glm::mat4 projectionMat = pack.camera->GetProjection();

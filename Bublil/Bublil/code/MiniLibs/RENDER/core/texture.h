@@ -5,21 +5,22 @@
 
 #include<string>
 #include<GL/glew.h>
-
-class Texture
+namespace render
 {
-public:
-	Texture(const std::string& filename);
+	class Texture
+	{
+	public:
+		Texture(const std::string& filename);
 
-	void Bind(unsigned int unit);
+		void Bind(unsigned int unit);
 
-	virtual ~Texture();
-protected:
-private:
-	Texture(const Texture& other){}
-	Texture&operator=(const Texture& other){}
+		virtual ~Texture();
+	protected:
+	private:
+		Texture(const Texture& other) {}
+		Texture&operator=(const Texture& other) {}
 
-	GLuint m_texture;
-};
-
+		GLuint m_texture;
+	};
+}
 #endif 

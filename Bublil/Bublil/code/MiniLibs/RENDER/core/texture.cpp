@@ -5,7 +5,7 @@
 #include<cassert>
 #include<iostream>
 
-Texture::Texture(const std::string& filename)
+render::Texture::Texture(const std::string& filename)
 {
 	int width, height, numComponents;
 	unsigned char* imageData = stbi_load(filename.c_str(), &width, &height, &numComponents, 4);
@@ -31,12 +31,12 @@ Texture::Texture(const std::string& filename)
 	stbi_image_free(imageData);
 }
 
-Texture::~Texture()
+render::Texture::~Texture()
 {
 	glDeleteTextures(1, &m_texture);
 }
 
-void Texture::Bind(unsigned int unit)
+void render::Texture::Bind(unsigned int unit)
 {
 	assert(unit >= 0 && unit <= 31);
 

@@ -10,32 +10,32 @@
 	return sqrt(distanceSquared(a, b));
 }
 
-float phy::literals::operator""nano(long double t)
+long double phy::literals::operator""_nano(long double t)
 {
 	return t / 1000000000;
 }
 
-float phy::literals::operator""micro(long double t)
+long double phy::literals::operator""_micro(long double t)
 {
 	return t / 1000000;
 }
 
-float phy::literals::operator""milli(long double t)
+long double phy::literals::operator""_milli(long double t)
 {
 	return t / 1000;
 }
 
-float phy::literals::operator""kilo(long double t)
+long double phy::literals::operator""_kilo(long double t)
 {
 	return t * 1000;
 }
 
-float phy::literals::operator""mega(long double t)
+long double phy::literals::operator""_mega(long double t)
 {
 	return t * 1000000;
 }
 
-float phy::literals::operator""giga(long double t)
+long double phy::literals::operator""_giga(long double t)
 {
 	return t * 1000000000;
 }

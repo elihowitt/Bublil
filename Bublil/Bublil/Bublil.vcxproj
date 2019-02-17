@@ -48,7 +48,7 @@
   <ItemGroup>
     <ClInclude Include="code\MiniLibs\RENDER\core\camera.h" />
     <ClInclude Include="code\MiniLibs\RENDER\core\display.h" />
-    <ClInclude Include="code\MiniLibs\RENDER\core\shaderUpdatePack.h" />
+    <ClInclude Include="code\MiniLibs\RENDER\renderGloabals.h" />
     <ClInclude Include="code\MiniLibs\RENDER\specialties\GUI.h" />
     <ClInclude Include="code\MiniLibs\RENDER\core\mesh.h" />
     <ClInclude Include="code\MiniLibs\RENDER\loading\obj_loader.h" />
@@ -138,7 +138,18 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IntDir>$(SolutionDir)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>$(SolutionDir)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IntDir>$(SolutionDir)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IntDir>$(SolutionDir)</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>

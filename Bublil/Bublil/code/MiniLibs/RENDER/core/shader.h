@@ -8,27 +8,29 @@
 #include<fstream>
 #include<GL/glew.h>
 
-#include"shaderUpdatePack.h"
+#include"RENDER\renderGloabals.h"
 
-class Shader
+namespace render
 {
-public:
-	Shader() {}
-	
-	void bind();
-	virtual void update(const ShaderUpdatePack& pack) = 0;
+	class Shader
+	{
+	public:
+		Shader() {}
 
-	std::string LoadShader(const std::string& filename);///
-	
-	virtual ~Shader() {}
+		void bind();
+		virtual void update(const ShaderUpdatePack& pack) = 0;
+
+		std::string LoadShader(const std::string& filename);///
+
+		virtual ~Shader() {}
 
 
-	static void CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage);
-	static GLuint CreateShader(const std::string& text, GLenum shaderType);
+		static void CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage);
+		static GLuint CreateShader(const std::string& text, GLenum shaderType);
 
-protected:
-	GLuint m_program;
-};
-
+	protected:
+		GLuint m_program;
+	};
+}
 #endif
 

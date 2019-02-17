@@ -4,14 +4,13 @@
 #include"RENDER/core/texture.h"
 #include"RENDER/core/shader.h"
 
-#include"../code/Globals.h"
+#include"renderGloabals.h"
 
 #include"RENDER\core\shaders\generalShader.h"
 #include"RENDER\core\shaders\guiShader.h"
 
 namespace render
 {
-
 	class RenderManager
 	{
 	public:
@@ -30,7 +29,8 @@ namespace render
 
 		void updateShader(const ShaderUpdatePack& pack, const SHADERLIST& type);
 
-	public:
 		void render(const RenderPack& bind, const ShaderUpdatePack& update);
+	public:
+		void render(const Drawable& drawable);
 	};
 }
