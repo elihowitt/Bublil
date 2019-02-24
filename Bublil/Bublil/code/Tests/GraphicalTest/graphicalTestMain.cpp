@@ -17,17 +17,15 @@
 #define WIDTH	800//About full screen 1400
 #define HEIGHT	600//					700
 
-#define DIR_GUISHADER "../Bublil/res/shaders/GUIShader"
-#define DIR_GENERALSHADER "../Bublil/res/shaders/basicShader"
-#define DIR_RELATIVEPOSITIONSHADER "../Bublil/res/shaders/relativePositionShader"
-
 #undef main
 
 #include<ctime>
 
+#include"../res/directories/resourceDirectories.h"
+
 int main()
 {
-	srand(time(0));
+	srand((unsigned)time(0));
 
 	render::Display display(WIDTH, HEIGHT, "Graphical test");
 	glm::vec3 skyVec(rand()%46/45.f, rand()%45/44.f, rand()%105/104.f);//glm::normalize(glm::vec3((rand()%25, rand()%65, rand()%95))));
@@ -38,21 +36,21 @@ int main()
 	std::string textures[render::TEXTURELIST::NUM_TEXTURES];
 	std::string shaders[render::SHADERLIST::NUM_SHADERES];
 
-	meshs[render::MESHLIST::MESH_TREE] = "../Bublil/res/models/tree.obj";
-	meshs[render::MESHLIST::MESH_POKEBALL] = "../Bublil/res/models/fox.obj";
-	textures[render::TEXTURELIST::TEXTURE_TREE] = "../Bublil/res/textures/tree.png";
-	textures[render::TEXTURELIST::TEXTURE_POKEBALL] = "../Bublil/res/textures/fox.png";
-	shaders[render::SHADERLIST::GENERAL_SHADER] = DIR_GENERALSHADER;
-	shaders[render::SHADERLIST::RELATIVEPOSITION_SHADER] = DIR_RELATIVEPOSITIONSHADER;
+	meshs[render::MESHLIST::MESH_TREE] = directories::resources::models::DIR_TREE;
+	meshs[render::MESHLIST::MESH_POKEBALL] = directories::resources::models::DIR_FOX;
+	textures[render::TEXTURELIST::TEXTURE_TREE] = directories::resources::textures::DIR_TREE;
+	textures[render::TEXTURELIST::TEXTURE_POKEBALL] = directories::resources::textures::DIR_FOX;
+	shaders[render::SHADERLIST::GENERAL_SHADER] = directories::resources::shaders::DIR_GENERAL;
+	shaders[render::SHADERLIST::RELATIVEPOSITION_SHADER] = directories::resources::shaders::DIR_RELATIVEPOSITION;
 
 	render::RenderManager renderManager(meshs, textures, shaders);
 
-	render::Camera camera(glm::vec3(0, 0, 0), 70.f, (float)WIDTH / (float)HEIGHT, 0.001, 1000);
+	render::Camera camera(glm::vec3(0, 0, 0), 70.f, (float)WIDTH / (float)HEIGHT, 0.001f, 1000);
 
 	glm::vec3 lightVec(glm::normalize(glm::vec3(5, 6, -7)));
 
-	GUI londonGUI("../Bublil/res/textures/LondonPhoto.png", glm::vec2(0, 0), glm::vec2(1, 1));
-	render::Shader* guiShader = new render::shaders::GUIShader(DIR_GUISHADER);
+	GUI londonGUI(directories::resources::textures::DIR_LONDON, glm::vec2(0, 0), glm::vec2(1, 1));
+	render::Shader* guiShader = new render::shaders::GUIShader(directories::resources::shaders::DIR_GUI);
 	render::ShaderUpdatePack guiUpdatePack;
 
 	render::Drawable treeDrawable;
@@ -107,9 +105,9 @@ int main()
 
 	while (!display.IsClosed())
 	{
-		//lg::cwout::generalLog("FRAPS", std::to_string(1.f/inDetec.getTimeDelta()));
+		if (inDetec.ButtonClicked(input::MSB_RIGHT))
+			lg::cwout::generalLog("FRAPS", std::to_string(1.f / inDetec.getTimeDelta()));
 		//lg::cwout::generalLog("TREE_COUNT", std::to_string(TC));
-
 
 		display.Clear(skyVec.x, skyVec.y, skyVec.z, 1.0);
 		

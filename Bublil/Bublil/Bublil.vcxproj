@@ -73,6 +73,7 @@
     <ClInclude Include="code\MiniLibs\RENDER\core\shaders\guiShader.h" />
     <ClInclude Include="code\MiniLibs\RENDER\core\shaders\skyboxShader.h" />
     <ClInclude Include="code\MiniLibs\RENDER\core\shaders\relativePositionShader.h" />
+    <ClInclude Include="res\directories\resourceDirectories.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="loggings\results.txt" />
@@ -87,9 +88,6 @@
     <Text Include="res\shaders\skyBoxShader.vs.txt" />
     <Text Include="res\shaders\terrainShader.fs.txt" />
     <Text Include="res\shaders\terrainShader.vs.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="code\Potentials\obj.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

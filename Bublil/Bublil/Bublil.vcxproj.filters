@@ -173,6 +173,9 @@
     <ClInclude Include="code\MiniLibs\RENDER\core\shaders\relativePositionShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="res\directories\resourceDirectories.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="loggings\runtimeEvents.txt" />
@@ -187,8 +190,5 @@
     <Text Include="res\shaders\GUIShader.fs.txt" />
     <Text Include="res\shaders\relativePositionShader.vs.txt" />
     <Text Include="res\shaders\relativePositionShader.fs.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="code\Potentials\obj.h" />
   </ItemGroup>
 </Project>
