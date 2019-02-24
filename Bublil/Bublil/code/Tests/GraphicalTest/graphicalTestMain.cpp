@@ -12,15 +12,25 @@
 
 #include"RENDER\core\shaders\guiShader.h"
 
+#include"LOGGER\logger.h"
+
 #define WIDTH	800//About full screen 1400
 #define HEIGHT	600//					700
 
+#define DIR_GUISHADER "../Bublil/res/shaders/GUIShader"
+#define DIR_GENERALSHADER "../Bublil/res/shaders/basicShader"
+#define DIR_RELATIVEPOSITIONSHADER "../Bublil/res/shaders/relativePositionShader"
+
 #undef main
+
+#include<ctime>
 
 int main()
 {
+	srand(time(0));
+
 	render::Display display(WIDTH, HEIGHT, "Graphical test");
-	glm::vec3 skyVec(0.5, 0.2, 0.8);
+	glm::vec3 skyVec(rand()%46/45.f, rand()%45/44.f, rand()%105/104.f);//glm::normalize(glm::vec3((rand()%25, rand()%65, rand()%95))));
 
 	input::InputDetector inDetec;
 
@@ -29,69 +39,125 @@ int main()
 	std::string shaders[render::SHADERLIST::NUM_SHADERES];
 
 	meshs[render::MESHLIST::MESH_TREE] = "../Bublil/res/models/tree.obj";
+	meshs[render::MESHLIST::MESH_POKEBALL] = "../Bublil/res/models/fox.obj";
 	textures[render::TEXTURELIST::TEXTURE_TREE] = "../Bublil/res/textures/tree.png";
-	shaders[render::SHADERLIST::GENERAL_SHADER] = "../Bublil/res/shaders/basicShader";
+	textures[render::TEXTURELIST::TEXTURE_POKEBALL] = "../Bublil/res/textures/fox.png";
+	shaders[render::SHADERLIST::GENERAL_SHADER] = DIR_GENERALSHADER;
+	shaders[render::SHADERLIST::RELATIVEPOSITION_SHADER] = DIR_RELATIVEPOSITIONSHADER;
 
 	render::RenderManager renderManager(meshs, textures, shaders);
 
 	render::Camera camera(glm::vec3(0, 0, 0), 70.f, (float)WIDTH / (float)HEIGHT, 0.001, 1000);
 
-	//render::specialties::GUI londonGUI(
-	//	"../Bublil/res/textures/LondonPhoto.png",
-	//	glm::vec2(0, 0), glm::vec2(1, 1),
-	//	"../Bublil/res/shaders/GUIShader");
-	render::shaders::GUIShader guiShader("../Bublil/res/shaders/GUIShader");
-	render::specialties::Quade guiQuade;
-	render::Texture guiTexture("../Bublil/res/textures/LondonPhoto.png");
+	glm::vec3 lightVec(glm::normalize(glm::vec3(5, 6, -7)));
+
+	GUI londonGUI("../Bublil/res/textures/LondonPhoto.png", glm::vec2(0, 0), glm::vec2(1, 1));
+	render::Shader* guiShader = new render::shaders::GUIShader(DIR_GUISHADER);
 	render::ShaderUpdatePack guiUpdatePack;
-	guiUpdatePack.vectors.push_back(glm::vec3(0, 0, 0));
-	guiUpdatePack.vectors.push_back(glm::vec3(1, 1, 1));
 
 	render::Drawable treeDrawable;
-
-	render::ShaderUpdatePack treeUpdatePack;
 	render::Transform treeTransform;
-	treeTransform.GetPos() = glm::vec3(0, -2, 5);
-	treeTransform.GetScale() = glm::vec3(1, 1, 1);
-	treeUpdatePack.transforms.push_back(treeTransform);
-	treeUpdatePack.camera = &camera;
-	glm::vec3 lightVec(glm::normalize(glm::vec3(5, 6, 7)));
-	treeUpdatePack.vectors.push_back(lightVec);
-	treeUpdatePack.vectors.push_back(skyVec);
+		
+	{
+		render::ShaderUpdatePack treeUpdatePack;
+		treeTransform.GetPos() = glm::vec3(0, -2, 5);
+		treeTransform.GetScale() = glm::vec3(1, 1, 1);
+		treeUpdatePack.transforms.push_back(treeTransform);
+		treeUpdatePack.camera = &camera;
+		treeUpdatePack.vectors.push_back(lightVec);
+		treeUpdatePack.vectors.push_back(skyVec);
 
-	render::RenderPack treeRenderPack;
-	treeRenderPack.mesh_id = render::MESHLIST::MESH_TREE;
-	treeRenderPack.texture_id = render::TEXTURELIST::TEXTURE_TREE;
-	treeRenderPack.shader_id = render::SHADERLIST::GENERAL_SHADER;
+		render::RenderPack treeRenderPack;
+		treeRenderPack.mesh_id = render::MESHLIST::MESH_TREE;
+		treeRenderPack.texture_id = render::TEXTURELIST::TEXTURE_TREE;
+		treeRenderPack.shader_id = render::SHADERLIST::GENERAL_SHADER;
 
-	treeDrawable.renderPack = treeRenderPack;
-	treeDrawable.updatePack = treeUpdatePack;
-	
+		treeDrawable.renderPack = treeRenderPack;
+		treeDrawable.updatePack = treeUpdatePack;
+	}
+
+	render::Drawable foxDrawable;
+	render::Transform foxTransform;
+
+	{
+		render::ShaderUpdatePack foxUpdatePack;
+		foxTransform.GetPos() = glm::vec3(0, 0, 0);
+		foxTransform.GetScale() = glm::vec3(1, 1, 1);
+		foxUpdatePack.transforms.push_back(foxTransform);
+		foxUpdatePack.camera = &camera;
+		foxUpdatePack.vectors.push_back(lightVec);
+		foxUpdatePack.vectors.push_back(skyVec);
+
+		render::RenderPack foxRenderPack;
+		foxRenderPack.mesh_id = render::MESHLIST::MESH_POKEBALL;
+		foxRenderPack.texture_id = render::TEXTURELIST::TEXTURE_POKEBALL;
+		foxRenderPack.shader_id = render::SHADERLIST::GENERAL_SHADER;
+
+		foxDrawable.renderPack = foxRenderPack;
+		foxDrawable.updatePack = foxUpdatePack;
+	}
+
+
+	int TC = 50;
+
+
 	float turnFactor = 0.5f;
 	float movementSpeed = 5.f;
 	float counter = 0.f;
 
 	while (!display.IsClosed())
 	{
+		//lg::cwout::generalLog("FRAPS", std::to_string(1.f/inDetec.getTimeDelta()));
+		//lg::cwout::generalLog("TREE_COUNT", std::to_string(TC));
+
+
 		display.Clear(skyVec.x, skyVec.y, skyVec.z, 1.0);
-		//display.Clear((float)inDetec.getMouseX()/WIDTH, (float)inDetec.getMouseY() / WIDTH, skyVec.z, 1.0);
+		
 		inDetec.update();
 
-		counter += 0.005;
+		counter += 0.005f;
 		lightVec.x = cosf(counter);
+		lightVec.y = sinf(counter);
+		lightVec.z = -1;
 
-		treeDrawable.updatePack.clearAll();
-		treeDrawable.updatePack.camera = &camera;
-		treeDrawable.updatePack.transforms.push_back(treeTransform);
-		treeDrawable.updatePack.vectors.push_back(lightVec);
-		treeDrawable.updatePack.vectors.push_back(skyVec);
+		renderManager.beginRoutine();
 
-		//renderManager.render(treeDrawable);
-		
-		guiShader.bind();
-		guiTexture.Bind(0);
-		guiShader.update(guiUpdatePack);
-		guiQuade.Draw();
+		for (int i = 0; i < TC; ++i)
+		{
+			float angle = i * glm::two_pi<float>() / (float)TC;
+			float R = 10;
+
+			if (i % 2)
+				treeDrawable.renderPack.shader_id = render::SHADERLIST::GENERAL_SHADER;
+			else
+				treeDrawable.renderPack.shader_id = render::SHADERLIST::RELATIVEPOSITION_SHADER;
+
+			treeDrawable.updatePack.clearAll();
+			treeDrawable.updatePack.camera = &camera;
+			treeTransform.GetPos() = glm::vec3(R * cosf(angle), 0, R * sinf(angle));
+			treeTransform.GetRot() = glm::vec3(0, 0, glm::radians(90.f));
+			treeDrawable.updatePack.transforms.push_back(treeTransform);
+			treeDrawable.updatePack.vectors.push_back(lightVec);
+			treeDrawable.updatePack.vectors.push_back(skyVec);
+			renderManager.render(treeDrawable);
+		}
+
+		foxDrawable.updatePack.clearAll();
+		foxDrawable.updatePack.camera = &camera;
+		foxDrawable.updatePack.transforms.push_back(foxTransform);
+		foxDrawable.updatePack.vectors.push_back(lightVec);
+		foxDrawable.updatePack.vectors.push_back(skyVec);
+		renderManager.render(foxDrawable);
+
+		renderManager.endRoutine();
+
+		guiUpdatePack.transforms.clear();
+		guiUpdatePack.transforms.push_back(render::Transform(
+			glm::vec3(-0.5, 0.5, 0), glm::vec3(0, 0, glm::radians(180.f)), glm::vec3(1/2.f, 1/2.f, 1)));
+		guiShader->bind();
+		((render::shaders::GUIShader*)guiShader)->update(guiUpdatePack);
+		londonGUI.Bind(0);
+		londonGUI.Draw();
 
 
 		camera.Yaw(inDetec.getDeltaMouseX()   *turnFactor);
@@ -103,8 +169,8 @@ int main()
 			camera.GetPosition() += glm::normalize(glm::cross(camera.GetForward(), camera.GetUp())) * (movementSpeed * inDetec.getTimeDelta());
 
 		if (inDetec.KeyDown(SDL_SCANCODE_W))
-			camera.GetPosition() += camera.GetForward()*(movementSpeed * inDetec.getTimeDelta());			
-		if (inDetec.KeyDown(SDL_SCANCODE_S))			
+			camera.GetPosition() += camera.GetForward()*(movementSpeed * inDetec.getTimeDelta());
+		if (inDetec.KeyDown(SDL_SCANCODE_S))
 			camera.GetPosition() -= camera.GetForward()*(movementSpeed * inDetec.getTimeDelta());
 
 

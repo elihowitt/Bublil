@@ -6,6 +6,9 @@ static render::SHADERLIST to_shaderType(const int& num)
 	{
 	case render::SHADERLIST::GENERAL_SHADER:
 		return render::SHADERLIST::GENERAL_SHADER;
+	case render::SHADERLIST::RELATIVEPOSITION_SHADER:
+		return render::SHADERLIST::RELATIVEPOSITION_SHADER;
+
 
 	case render::SHADERLIST::NUM_SHADERES:
 	default:
@@ -44,6 +47,8 @@ render::Shader * render::RenderManager::CreateCustomeShaderByType(const SHADERLI
 	case SHADERLIST::GENERAL_SHADER:
 		return new render::shaders::GeneralShader(filename);
 		break;
+	case SHADERLIST::RELATIVEPOSITION_SHADER:
+		return new render::shaders::RelativePositionShader(filename);
 
 	case SHADERLIST::NUM_SHADERES:
 	default:
@@ -73,6 +78,9 @@ void render::RenderManager::updateShader(const ShaderUpdatePack & pack, const SH
 	case SHADERLIST::GENERAL_SHADER:
 		((render::shaders::GeneralShader*)arr_shaders[type])->update(pack);
 		break;
+	case SHADERLIST::RELATIVEPOSITION_SHADER:
+		((render::shaders::RelativePositionShader*)arr_shaders[type])->update(pack);
+		break;
 
 	case SHADERLIST::NUM_SHADERES:
 	default:
@@ -86,6 +94,20 @@ void render::RenderManager::render(const RenderPack & bind, const ShaderUpdatePa
 	updateShader(update, bind.shader_id);
 
 	arr_meshs[bind.mesh_id]->Draw();
+}
+
+void render::RenderManager::beginRoutine()
+{
+	boundPack.mesh_id = MESHLIST::NUM_MESHES;
+	boundPack.shader_id = SHADERLIST::NUM_SHADERES;
+	boundPack.texture_id = TEXTURELIST::NUM_TEXTURES;
+}
+
+void render::RenderManager::endRoutine()
+{
+	boundPack.mesh_id = MESHLIST::NUM_MESHES;
+	boundPack.shader_id = SHADERLIST::NUM_SHADERES;
+	boundPack.texture_id = TEXTURELIST::NUM_TEXTURES;
 }
 
 void render::RenderManager::render(const Drawable & drawable)

@@ -10,7 +10,7 @@ namespace render
 	{
 		//Must start at 0.
 		MESH_TREE,
-
+		MESH_POKEBALL,
 
 
 		//Must be last
@@ -21,7 +21,7 @@ namespace render
 	{
 		//Must start at 0.
 		TEXTURE_TREE,
-
+		TEXTURE_POKEBALL,
 
 		//Must be last
 		NUM_TEXTURES
@@ -31,6 +31,7 @@ namespace render
 	{
 		//Must start at 0.
 		GENERAL_SHADER,
+		RELATIVEPOSITION_SHADER,
 
 
 		//Must be last

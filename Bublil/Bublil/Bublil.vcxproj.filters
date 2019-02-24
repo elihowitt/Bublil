@@ -90,6 +90,9 @@
     <ClCompile Include="code\Tests\GraphicalTest\graphicalTestMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="code\MiniLibs\RENDER\core\shaders\relativePositionShader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\Tests\Test_application\testApp.h">
@@ -167,6 +170,9 @@
     <ClInclude Include="code\MiniLibs\RENDER\renderGloabals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="code\MiniLibs\RENDER\core\shaders\relativePositionShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="loggings\runtimeEvents.txt" />
@@ -179,6 +185,8 @@
     <Text Include="res\shaders\terrainShader.vs.txt" />
     <Text Include="res\shaders\GUIShader.vs.txt" />
     <Text Include="res\shaders\GUIShader.fs.txt" />
+    <Text Include="res\shaders\relativePositionShader.vs.txt" />
+    <Text Include="res\shaders\relativePositionShader.fs.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="code\Potentials\obj.h" />

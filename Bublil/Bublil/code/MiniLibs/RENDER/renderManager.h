@@ -7,6 +7,7 @@
 #include"renderGloabals.h"
 
 #include"RENDER\core\shaders\generalShader.h"
+#include"RENDER\core\shaders\relativePositionShader.h"
 #include"RENDER\core\shaders\guiShader.h"
 
 namespace render
@@ -31,6 +32,9 @@ namespace render
 
 		void render(const RenderPack& bind, const ShaderUpdatePack& update);
 	public:
+		void beginRoutine();
+		void endRoutine();
+		
 		void render(const Drawable& drawable);
 	};
 }

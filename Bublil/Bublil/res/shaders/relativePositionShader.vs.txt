@@ -1,0 +1,16 @@
+#version 140
+
+attribute vec3 position;
+
+varying vec3 relativePosition;
+
+uniform mat4 viewAndProjection;
+uniform mat4 viewMat;
+uniform mat4 projectionMat;
+uniform mat4 model;
+
+void main()
+{
+	relativePosition = position;
+	gl_Position = viewAndProjection * model * vec4(position, 1.0);
+}

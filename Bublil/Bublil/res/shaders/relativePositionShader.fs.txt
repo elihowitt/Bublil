@@ -1,0 +1,8 @@
+#version 140
+
+varying vec3 relativePosition;
+
+void main()
+{
+	gl_FragColor = vec4(relativePosition.xyz*2, 1);
+}

@@ -19,13 +19,11 @@ namespace render
 
 			enum
 			{
-				POS_U,
-				SCALE_U,
+				MODEL_U,
 
 				NUM_UNIFORMS
 			};
 
-			GLuint m_program;
 			GLuint m_shaders[NUM_SHADERS];
 			GLuint m_uniforms[NUM_UNIFORMS];
 

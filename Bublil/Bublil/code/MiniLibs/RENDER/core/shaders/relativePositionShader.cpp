@@ -1,6 +1,6 @@
-#include "guiShader.h"
+#include "relativePositionShader.h"
 
-render::shaders::GUIShader::GUIShader(const std::string& filename)
+render::shaders::RelativePositionShader::RelativePositionShader(const std::string& filename)
 {
 	m_program = glCreateProgram();
 	m_shaders[0] = CreateShader(LoadShader(filename + ".vs.txt"), GL_VERTEX_SHADER);
@@ -19,9 +19,11 @@ render::shaders::GUIShader::GUIShader(const std::string& filename)
 	CheckShaderError(m_program, GL_VALIDATE_STATUS, true, "[Error]: program is invalid!: ");
 
 	m_uniforms[MODEL_U] = glGetUniformLocation(m_program, "model");
+	m_uniforms[VIEWANDPROJECTION_U] = glGetUniformLocation(m_program, "viewAndProjection");
+	m_uniforms[SKYCOLOUR_U] = glGetUniformLocation(m_program, "skyColour");
 }
 
-render::shaders::GUIShader::~GUIShader()
+render::shaders::RelativePositionShader::~RelativePositionShader()
 {
 	for (unsigned int i = 0; i < NUM_SHADERS; i++)
 	{
@@ -30,12 +32,15 @@ render::shaders::GUIShader::~GUIShader()
 	}
 
 	glDeleteProgram(m_program);
-
 }
 
-void render::shaders::GUIShader::update(const ShaderUpdatePack& pack)
+void render::shaders::RelativePositionShader::update(const ShaderUpdatePack& pack)
 {
 	glm::mat4 model = pack.transforms[0].GetModel();
+	glm::mat4 viewAndProjection = pack.camera->GetViewProjection();
+	glm::vec3 skyColour = pack.vectors[1];
 
 	glUniformMatrix4fv(m_uniforms[MODEL_U], 1, GL_FALSE, &model[0][0]);
+	glUniformMatrix4fv(m_uniforms[VIEWANDPROJECTION_U], 1, GL_FALSE, &viewAndProjection[0][0]);
+	glUniform3fv(m_uniforms[SKYCOLOUR_U], 1, &skyColour[0]);
 }
