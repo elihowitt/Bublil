@@ -6,8 +6,6 @@
 
 #include"INPUT\inputDetection.h"
 
-#include"RENDER\renderManager.h"
-
 #include"RENDER\specialties\GUI.h"
 
 #include"RENDER\core\shaders\guiShader.h"
@@ -23,8 +21,22 @@
 
 #include"../res/directories/resourceDirectories.h"
 
+#include<ft2build.h>
+
+#include<freeType\freetype.h>
+
 int main()
 {
+	FT_Library ft;
+
+	if (FT_Init_FreeType(&ft))
+		std::cout << "ERROR::FREETYPE: Could not init FreeType Library" << std::endl;
+	
+
+
+
+
+
 	srand((unsigned)time(0));
 
 	render::Display display(WIDTH, HEIGHT, "Graphical test");
@@ -53,46 +65,33 @@ int main()
 	render::Shader* guiShader = new render::shaders::GUIShader(directories::resources::shaders::DIR_GUI);
 	render::ShaderUpdatePack guiUpdatePack;
 
-	render::Drawable treeDrawable;
-	render::Transform treeTransform;
-		
+
+	render::Drawable treeDrawable;	
 	{
-		render::ShaderUpdatePack treeUpdatePack;
-		treeTransform.GetPos() = glm::vec3(0, -2, 5);
-		treeTransform.GetScale() = glm::vec3(1, 1, 1);
-		treeUpdatePack.transforms.push_back(treeTransform);
-		treeUpdatePack.camera = &camera;
-		treeUpdatePack.vectors.push_back(lightVec);
-		treeUpdatePack.vectors.push_back(skyVec);
+		treeDrawable.updatePack.transforms.push_back(render::Transform());
+		treeDrawable.updatePack.transforms[0].GetPos() = glm::vec3(0, -2, 5);
+		treeDrawable.updatePack.transforms[0].GetScale() = glm::vec3(1, 1, 1);
+		treeDrawable.updatePack.camera = &camera;
+		treeDrawable.updatePack.vectors.push_back(lightVec);
+		treeDrawable.updatePack.vectors.push_back(skyVec);
 
-		render::RenderPack treeRenderPack;
-		treeRenderPack.mesh_id = render::MESHLIST::MESH_TREE;
-		treeRenderPack.texture_id = render::TEXTURELIST::TEXTURE_TREE;
-		treeRenderPack.shader_id = render::SHADERLIST::GENERAL_SHADER;
-
-		treeDrawable.renderPack = treeRenderPack;
-		treeDrawable.updatePack = treeUpdatePack;
+		treeDrawable.renderPack.mesh_id = render::MESHLIST::MESH_TREE;
+		treeDrawable.renderPack.texture_id = render::TEXTURELIST::TEXTURE_TREE;
+		treeDrawable.renderPack.shader_id = render::SHADERLIST::GENERAL_SHADER;
 	}
 
 	render::Drawable foxDrawable;
-	render::Transform foxTransform;
-
 	{
-		render::ShaderUpdatePack foxUpdatePack;
-		foxTransform.GetPos() = glm::vec3(0, 0, 0);
-		foxTransform.GetScale() = glm::vec3(1, 1, 1);
-		foxUpdatePack.transforms.push_back(foxTransform);
-		foxUpdatePack.camera = &camera;
-		foxUpdatePack.vectors.push_back(lightVec);
-		foxUpdatePack.vectors.push_back(skyVec);
+		foxDrawable.updatePack.transforms.push_back(render::Transform());
+		foxDrawable.updatePack.transforms[0].GetPos() = glm::vec3(0, 0, 0);
+		foxDrawable.updatePack.transforms[0].GetScale() = glm::vec3(1, 1, 1);
+		foxDrawable.updatePack.camera = &camera;
+		foxDrawable.updatePack.vectors.push_back(lightVec);
+		foxDrawable.updatePack.vectors.push_back(skyVec);
 
-		render::RenderPack foxRenderPack;
-		foxRenderPack.mesh_id = render::MESHLIST::MESH_POKEBALL;
-		foxRenderPack.texture_id = render::TEXTURELIST::TEXTURE_POKEBALL;
-		foxRenderPack.shader_id = render::SHADERLIST::GENERAL_SHADER;
-
-		foxDrawable.renderPack = foxRenderPack;
-		foxDrawable.updatePack = foxUpdatePack;
+		foxDrawable.renderPack.mesh_id = render::MESHLIST::MESH_POKEBALL;
+		foxDrawable.renderPack.texture_id = render::TEXTURELIST::TEXTURE_POKEBALL;
+		foxDrawable.renderPack.shader_id = render::SHADERLIST::GENERAL_SHADER;
 	}
 
 
@@ -130,21 +129,14 @@ int main()
 			else
 				treeDrawable.renderPack.shader_id = render::SHADERLIST::RELATIVEPOSITION_SHADER;
 
-			treeDrawable.updatePack.clearAll();
-			treeDrawable.updatePack.camera = &camera;
-			treeTransform.GetPos() = glm::vec3(R * cosf(angle), 0, R * sinf(angle));
-			treeTransform.GetRot() = glm::vec3(0, 0, glm::radians(90.f));
-			treeDrawable.updatePack.transforms.push_back(treeTransform);
-			treeDrawable.updatePack.vectors.push_back(lightVec);
-			treeDrawable.updatePack.vectors.push_back(skyVec);
+
+			treeDrawable.updatePack.transforms[0].GetPos() = glm::vec3(R * cosf(angle), 0, R * sinf(angle));
+			treeDrawable.updatePack.transforms[0].GetRot() = glm::vec3(0, 0, 0);
 			renderManager.render(treeDrawable);
 		}
 
-		foxDrawable.updatePack.clearAll();
-		foxDrawable.updatePack.camera = &camera;
-		foxDrawable.updatePack.transforms.push_back(foxTransform);
-		foxDrawable.updatePack.vectors.push_back(lightVec);
-		foxDrawable.updatePack.vectors.push_back(skyVec);
+
+		foxDrawable.updatePack.transforms[0].GetRot().y += inDetec.getTimeDelta()/2.f;
 		renderManager.render(foxDrawable);
 
 		renderManager.endRoutine();
@@ -170,8 +162,6 @@ int main()
 			camera.GetPosition() += camera.GetForward()*(movementSpeed * inDetec.getTimeDelta());
 		if (inDetec.KeyDown(SDL_SCANCODE_S))
 			camera.GetPosition() -= camera.GetForward()*(movementSpeed * inDetec.getTimeDelta());
-
-
 
 		display.Update();
 	}

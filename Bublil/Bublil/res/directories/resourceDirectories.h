@@ -21,5 +21,9 @@ namespace directories
 			static const char* DIR_GUI = "../Bublil/res/shaders/GUIShader";
 			static const char* DIR_RELATIVEPOSITION = "../Bublil/res/shaders/relativePositionShader";
 		}
+		namespace fonts
+		{
+			static const char* DIR_OPENSANS_BOLD = "../Bublil/res/fonts/OpenSans-Bold.ttf";
+		}
 	}
 }

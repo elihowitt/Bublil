@@ -191,4 +191,7 @@
     <Text Include="res\shaders\relativePositionShader.vs.txt" />
     <Text Include="res\shaders\relativePositionShader.fs.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="res\fonts\OpenSans-Bold.ttf" />
+  </ItemGroup>
 </Project>
