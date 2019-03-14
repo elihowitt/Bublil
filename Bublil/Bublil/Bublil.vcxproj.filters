@@ -96,9 +96,6 @@
     <ClCompile Include="code\Tests\FontTest\fontTestMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fontRendere.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\Tests\Test_application\testApp.h">
@@ -180,9 +177,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="res\directories\resourceDirectories.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="fontRendere.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
