@@ -30,7 +30,7 @@ namespace input
 	{
 	public:
 
-		InputDetector() {}
+		InputDetector() { update(); }
 		~InputDetector() {}
 	private:
 

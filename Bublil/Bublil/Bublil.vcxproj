@@ -38,6 +38,7 @@
     <ClCompile Include="code\MiniLibs\physics\physicsPhysicalEntity.cpp" />
     <ClCompile Include="code\MiniLibs\physics\physicsPhysicalUnit.cpp" />
     <ClCompile Include="code\MiniLibs\RENDER\renderManager.cpp" />
+    <ClCompile Include="code\Tests\FontTest\fontTestMain.cpp" />
     <ClCompile Include="code\Tests\GraphicalTest\graphicalTestMain.cpp" />
     <ClCompile Include="code\Tests\Test_application\testMain.cpp" />
     <ClCompile Include="code\Tests\Test_input\testInputMain.cpp" />
@@ -45,6 +46,7 @@
     <ClCompile Include="code\MiniLibs\RENDER\core\shaders\guiShader.cpp" />
     <ClCompile Include="code\MiniLibs\RENDER\core\shaders\skyboxShader.cpp" />
     <ClCompile Include="code\MiniLibs\RENDER\core\shaders\relativePositionShader.cpp" />
+    <ClCompile Include="fontRendere.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\MiniLibs\RENDER\core\camera.h" />
@@ -73,6 +75,7 @@
     <ClInclude Include="code\MiniLibs\RENDER\core\shaders\guiShader.h" />
     <ClInclude Include="code\MiniLibs\RENDER\core\shaders\skyboxShader.h" />
     <ClInclude Include="code\MiniLibs\RENDER\core\shaders\relativePositionShader.h" />
+    <ClInclude Include="fontRendere.h" />
     <ClInclude Include="res\directories\resourceDirectories.h" />
   </ItemGroup>
   <ItemGroup>
