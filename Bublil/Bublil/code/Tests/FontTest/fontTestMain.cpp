@@ -8,6 +8,8 @@
 
 #include"SDL2\SDL.h"
 
+#include"RENDER\specialties\fontRendere.h"
+
 #include"freetype\ft2build.h"
 #include FT_FREETYPE_H
 
@@ -18,23 +20,23 @@
 
 #undef main
 
-#define FT_H 20
-#define FT_W 40
-
-void show_image(unsigned char ft_image[FT_H][FT_W])
-{
-	int  i, j;
-
-
-	for (i = 0; i < FT_H; i++)
-	{
-		for (j = 0; j < FT_W; j++)
-			putchar(ft_image[i][j] == 0 ? ' '
-				: ft_image[i][j] < 128 ? '+'
-				: '*');
-		putchar('\n');
-	}
-}
+//#define FT_H 20
+//#define FT_W 40
+//
+//void show_image(unsigned char ft_image[FT_H][FT_W])
+//{
+//	int  i, j;
+//
+//
+//	for (i = 0; i < FT_H; i++)
+//	{
+//		for (j = 0; j < FT_W; j++)
+//			putchar(ft_image[i][j] == 0 ? ' '
+//				: ft_image[i][j] < 128 ? '+'
+//				: '*');
+//		putchar('\n');
+//	}
+//}
 
 int main()
 {
@@ -77,89 +79,95 @@ int main()
 
 	float turnFactor = 0.5f;
 	float movementSpeed = 5.f;
+
+
+	render::FontRendere fontRendere(directories::resources::fonts::DIR_SOMEFONT, 24, directories::resources::shaders::DIR_GUI);
+	
+
+
 	//
 	///
 	//
-
-	FT_Library ft_library;
-	FT_Error ft_error = FT_Init_FreeType(&ft_library);
-	if (ft_error != FT_Err_Ok)
-	{
-		lg::dbout::basicLog(L"[FT_ERROR]: Initializing library");
-		return 1;
-	}
-	
-	FT_Face ft_face;
-	ft_error = FT_New_Face(ft_library, directories::resources::fonts::DIR_OPENSANS_BOLD, 0, &ft_face);
-	if (ft_error != FT_Err_Ok)
-	{
-		lg::dbout::basicLog(L"[FT_ERROR]: Initializing face");
-		return 1;
-	}
-	
-	FT_GlyphSlot  ft_slot;
-	FT_Matrix     ft_matrix;
-	{ft_matrix.xx = 1, ft_matrix.xy = 0;
-	ft_matrix.xx = 0, ft_matrix.xy = 1; }
-	FT_Vector     ft_pen;
-	
-	ft_error = FT_Set_Char_Size(ft_face, 1 * 64, 0,
-		100, 0);
-	
-	ft_slot = ft_face->glyph;
-	
-	ft_pen.x = 0;
-	ft_pen.y = 0;
-	
-	std::string ft_text("ABC");
-	
-	unsigned char ft_image[FT_H][FT_W];
-	
-	auto ft_draw_bitmap = [&ft_image](FT_Bitmap* bitmap, FT_Int x, FT_Int y) {
-		FT_Int  i, j, p, q;
-		FT_Int  x_max = x + bitmap->width;
-		FT_Int  y_max = y + bitmap->rows;
-	
-	
-		/* for simplicity, we assume that `bitmap->pixel_mode' */
-		/* is `FT_PIXEL_MODE_GRAY' (i.e., not a bitmap font)   */
-	
-		for (i = x, p = 0; i < x_max; i++, p++)
-		{
-			for (j = y, q = 0; j < y_max; j++, q++)
-			{
-				if (i < 0 || j < 0 ||
-					i >= FT_W || j >= FT_H)
-					continue;
-	
-				ft_image[j][i] |= bitmap->buffer[q * bitmap->width + p];
-			}
-		}
-	};
-	
-	for (int n = 0; n < ft_text.length(); n++)
-	{
-		/* set transformation */
-		FT_Set_Transform(ft_face, &ft_matrix, &ft_pen);
-	
-		/* load glyph image into the slot (erase previous one) */
-		ft_error = FT_Load_Char(ft_face, ft_text[n], FT_LOAD_RENDER);
+	/*{
+		FT_Library ft_library;
+		FT_Error ft_error = FT_Init_FreeType(&ft_library);
 		if (ft_error != FT_Err_Ok)
 		{
-			lg::dbout::basicLog(L"[FT_ERROR]: Loading character");
+			lg::dbout::basicLog(L"[FT_ERROR]: Initializing library");
 			return 1;
 		}
-	
-		/* now, draw to our target surface (convert position) */
-		ft_draw_bitmap(&ft_slot->bitmap,
-			ft_slot->bitmap_left,
-			FT_H - ft_slot->bitmap_top);
-	
-		/* increment pen position */
-		ft_pen.x += ft_slot->advance.x;
-		ft_pen.y += ft_slot->advance.y;
-	}
-	
+
+		FT_Face ft_face;
+		ft_error = FT_New_Face(ft_library, directories::resources::fonts::DIR_OPENSANS_BOLD, 0, &ft_face);
+		if (ft_error != FT_Err_Ok)
+		{
+			lg::dbout::basicLog(L"[FT_ERROR]: Initializing face");
+			return 1;
+		}
+
+		FT_GlyphSlot  ft_slot;
+		FT_Matrix     ft_matrix;
+		{ft_matrix.xx = 1, ft_matrix.xy = 0;
+		ft_matrix.xx = 0, ft_matrix.xy = 1; }
+		FT_Vector     ft_pen;
+
+		ft_error = FT_Set_Char_Size(ft_face, 1 * 64, 0,
+			100, 0);
+
+		ft_slot = ft_face->glyph;
+
+		ft_pen.x = 0;
+		ft_pen.y = 0;
+
+		std::string ft_text("ABC");
+
+		unsigned char ft_image[FT_H][FT_W];
+
+		auto ft_draw_bitmap = [&ft_image](FT_Bitmap* bitmap, FT_Int x, FT_Int y) {
+			FT_Int  i, j, p, q;
+			FT_Int  x_max = x + bitmap->width;
+			FT_Int  y_max = y + bitmap->rows;
+
+
+			/* for simplicity, we assume that `bitmap->pixel_mode' 
+			// is `FT_PIXEL_MODE_GRAY' (i.e., not a bitmap font)  
+
+			for (i = x, p = 0; i < x_max; i++, p++)
+			{
+				for (j = y, q = 0; j < y_max; j++, q++)
+				{
+					if (i < 0 || j < 0 ||
+						i >= FT_W || j >= FT_H)
+						continue;
+
+					ft_image[j][i] |= bitmap->buffer[q * bitmap->width + p];
+				}
+			}
+		};
+
+		for (int n = 0; n < ft_text.length(); n++)
+		{
+			// set transformation 
+			FT_Set_Transform(ft_face, &ft_matrix, &ft_pen);
+
+			// load glyph image into the slot (erase previous one) 
+			ft_error = FT_Load_Char(ft_face, ft_text[n], FT_LOAD_RENDER);
+			if (ft_error != FT_Err_Ok)
+			{
+				lg::dbout::basicLog(L"[FT_ERROR]: Loading character");
+				return 1;
+			}
+
+			// now, draw to our target surface (convert position) 
+			ft_draw_bitmap(&ft_slot->bitmap,
+				ft_slot->bitmap_left,
+				FT_H - ft_slot->bitmap_top);
+
+			// increment pen position 
+			ft_pen.x += ft_slot->advance.x;
+			ft_pen.y += ft_slot->advance.y;
+		}
+	}*/
 	//
 	///
 	//
@@ -182,9 +190,8 @@ int main()
 		//
 		///
 		//
-
-
-
+		//					string to render   2d starting position   2d rotation mat
+		fontRendere.render("Hello font world", glm::vec2(0, 0), glm::mat2(cos(0), -sin(0), sin(0), cos(0)));
 		//
 		///
 		//

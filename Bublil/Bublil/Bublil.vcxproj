@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\MiniLibs\RENDER\core\display.cpp" />
+    <ClCompile Include="code\MiniLibs\RENDER\specialties\fontRendere.cpp" />
     <ClCompile Include="code\MiniLibs\RENDER\specialties\GUI.cpp" />
     <ClCompile Include="code\MiniLibs\RENDER\core\mesh.cpp" />
     <ClCompile Include="code\MiniLibs\RENDER\loading\obj_loader.cpp" />
@@ -51,6 +52,7 @@
     <ClInclude Include="code\MiniLibs\RENDER\core\camera.h" />
     <ClInclude Include="code\MiniLibs\RENDER\core\display.h" />
     <ClInclude Include="code\MiniLibs\RENDER\renderGloabals.h" />
+    <ClInclude Include="code\MiniLibs\RENDER\specialties\fontRendere.h" />
     <ClInclude Include="code\MiniLibs\RENDER\specialties\GUI.h" />
     <ClInclude Include="code\MiniLibs\RENDER\core\mesh.h" />
     <ClInclude Include="code\MiniLibs\RENDER\loading\obj_loader.h" />
