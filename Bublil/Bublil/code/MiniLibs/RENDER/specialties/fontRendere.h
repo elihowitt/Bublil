@@ -11,28 +11,63 @@
 
 #include"RENDER\specialties\quade.h"
 
+#include"RENDER\core\shaders\guiShader.h"
+
+#include"LOGGER\logger.h"
+
+#include<map>
+
+/*
+This is the idea:
+	For most cases we render sentances we know we will use in the future
+	and dont need to be created many times - 
+	so we'll setup all those sentances in the begining and save thier texture for further use.
+
+	Other cases like when someone types in the chat then we'll just draw many quades of
+	the used letters separetly.
+*/
 namespace render
 {
-	class FontRendere
+	namespace specialties
 	{
-	public:
-		struct Character
+		class FontRendere
 		{
-			GLuint TextureID;   // ID handle of the glyph texture
-			glm::ivec2 Size;    // Size of glyph
-			glm::ivec2 Bearing;  // Offset from baseline to left/top of glyph
-			GLuint Advance;    // Horizontal offset to advance to next glyph
+		public:
+			struct Character
+			{
+				GLuint TextureID;   // ID handle of the glyph texture
+
+				unsigned char* buffer;	//glyph actual data.
+				glm::ivec2 size;    // Size of glyph
+				glm::ivec2 bearing;  // Offset from baseline to left/top of glyph
+				GLuint advance;    // Horizontal offset to advance to next glyph
+			};
+
+			enum SAVED_SENTANCE
+			{
+				SAVED_HELLOWORLD
+			};
+
+
+			FontRendere(const std::string& fontFile, const unsigned int& numChars, const std::string& shaderFile);
+			~FontRendere();
+
+			//Initializing a saved sentance.
+			void SaveSentance(const SAVED_SENTANCE& id, const std::string& data);
+
+			//Rendering saved sentance.
+			void renderSaved(const SAVED_SENTANCE& sentance, const glm::vec2 & start_position, const glm::vec3 & rotation, const glm::vec3& scale);
+
+			//Rendering non-saved sentance.
+			void render(const std::string & message, const glm::vec2 & start_position, const glm::vec3 & rotation, const glm::vec3& scale);
+		private:
+			static FT_Library library;
+			FT_Face face;
+			Character* availableCharacters;
+			Shader* shader;
+			Quade quade;
+
+			std::map<SAVED_SENTANCE, GLuint> sentance_texture_map;
 		};
-
-		FontRendere(const std::string& fontFile, const unsigned int& numChars, const std::string& shaderFile);
-		~FontRendere();
-
-		void render(const std::string& message, const glm::vec2& start_position, const glm::mat2& rotation_scale);
-	private:
-		static FT_Library library;
-		FT_Face face;
-		Character* availableCharacters;
-		Shader* shader;
-		Quade quade;
-	};
+	}
 }

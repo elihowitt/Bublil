@@ -4,7 +4,7 @@
 
 static bool InitTexture(const std::string& filename, GLuint& tex);
 
-GUI::GUI(const std::string& texfile, const glm::vec2& position, const glm::vec2& scale)
+render::specialties::GUI::GUI(const std::string& texfile, const glm::vec2& position, const glm::vec2& scale)
 {
 	m_position = position;
 	m_scale = scale;
@@ -34,12 +34,12 @@ static bool InitTexture(const std::string& filename, GLuint& tex)
 	return true;
 }
 
-GUI::~GUI()
+render::specialties::GUI::~GUI()
 {
 	glDeleteTextures(1, &m_texture);
 }
 
-void GUI::Bind(unsigned int unit)
+void render::specialties::GUI::Bind(unsigned int unit)
 {
 	assert(unit >= 0 && unit <= 31);
 
@@ -47,7 +47,7 @@ void GUI::Bind(unsigned int unit)
 	glBindTexture(GL_TEXTURE_2D, m_texture);
 }
 
-void GUI::Draw()
+void render::specialties::GUI::Draw()
 {
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE);

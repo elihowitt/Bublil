@@ -68,7 +68,7 @@ int main_graphicalTest()
 
 	glm::vec3 lightVec(glm::normalize(glm::vec3(5, 6, -7)));
 
-	GUI londonGUI(directories::resources::textures::DIR_LONDON, glm::vec2(0, 0), glm::vec2(1, 1));
+	render::specialties::GUI londonGUI(directories::resources::textures::DIR_LONDON, glm::vec2(0, 0), glm::vec2(1, 1));
 	render::Shader* guiShader = new render::shaders::GUIShader(directories::resources::shaders::DIR_GUI);
 	render::ShaderUpdatePack guiUpdatePack;
 

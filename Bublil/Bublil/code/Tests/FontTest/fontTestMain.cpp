@@ -81,7 +81,7 @@ int main()
 	float movementSpeed = 5.f;
 
 
-	render::FontRendere fontRendere(directories::resources::fonts::DIR_SOMEFONT, 24, directories::resources::shaders::DIR_GUI);
+	render::specialties::FontRendere fontRendere(directories::resources::fonts::DIR_SOMEFONT, 24, directories::resources::shaders::DIR_GUI);
 	
 
 
