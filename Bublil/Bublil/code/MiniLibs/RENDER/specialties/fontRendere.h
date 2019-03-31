@@ -11,6 +11,7 @@
 
 #include"RENDER\specialties\quade.h"
 
+#include"RENDER\specialties\GUI.h"
 #include"RENDER\core\shaders\guiShader.h"
 
 #include"LOGGER\logger.h"
@@ -30,12 +31,12 @@ namespace render
 {
 	namespace specialties
 	{
-		class FontRendere
+		class FontRenderer
 		{
 		public:
 			struct Character
 			{
-				GLuint TextureID;   // ID handle of the glyph texture
+				GLuint textureID;   // ID handle of the glyph texture
 
 				unsigned char* buffer;	//glyph actual data.
 				glm::ivec2 size;    // Size of glyph
@@ -49,25 +50,31 @@ namespace render
 			};
 
 
-			FontRendere(const std::string& fontFile, const unsigned int& numChars, const std::string& shaderFile);
-			~FontRendere();
+			FontRenderer(const std::string& fontFile, const unsigned int& numChars, const std::string& shaderFile);
+			~FontRenderer();
 
 			//Initializing a saved sentance.
 			void SaveSentance(const SAVED_SENTANCE& id, const std::string& data);
 
 			//Rendering saved sentance.
-			void renderSaved(const SAVED_SENTANCE& sentance, const glm::vec2 & start_position, const glm::vec3 & rotation, const glm::vec3& scale);
+			void renderSaved(const SAVED_SENTANCE& sentance, const glm::vec2 & start_position, const glm::vec3 & rotation, const glm::vec2& scale);
 
 			//Rendering non-saved sentance.
-			void render(const std::string & message, const glm::vec2 & start_position, const glm::vec3 & rotation, const glm::vec3& scale);
+			void render(const std::string & message, const glm::vec2 & start_position, const glm::vec3 & rotation, const glm::vec2& scale);
 		private:
-			static FT_Library library;
+			static bool libraryInitialized;
+			FT_Library library;
 			FT_Face face;
 			Character* availableCharacters;
 			Shader* shader;
-			Quade quade;
+			GUI frame;
 
+			lg::fout fileOutputLog;
+
+			ShaderUpdatePack updatePack;
 			std::map<SAVED_SENTANCE, GLuint> sentance_texture_map;
+			
+			void renderCurrent(const bool& to_bind = true);
 		};
 	}
 }

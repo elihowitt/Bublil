@@ -25,6 +25,7 @@ namespace directories
 		{
 			static const char* DIR_OPENSANS_BOLD = "../Bublil/res/fonts/OpenSans-Bold.ttf";
 			static const char* DIR_SOMEFONT = "../Bublil/res/fonts/someFont.TTF";
+			static const char* DIR_AGEO = "../Bublil/res/fonts/AgeoPersonalUse.otf";
 		}
 	}
 }

@@ -20,24 +20,6 @@
 
 #undef main
 
-//#define FT_H 20
-//#define FT_W 40
-//
-//void show_image(unsigned char ft_image[FT_H][FT_W])
-//{
-//	int  i, j;
-//
-//
-//	for (i = 0; i < FT_H; i++)
-//	{
-//		for (j = 0; j < FT_W; j++)
-//			putchar(ft_image[i][j] == 0 ? ' '
-//				: ft_image[i][j] < 128 ? '+'
-//				: '*');
-//		putchar('\n');
-//	}
-//}
-
 int main()
 {
 	render::Display display(WIDTH, HEIGHT, "Font test");
@@ -81,8 +63,8 @@ int main()
 	float movementSpeed = 5.f;
 
 
-	render::specialties::FontRendere fontRendere(directories::resources::fonts::DIR_SOMEFONT, 24, directories::resources::shaders::DIR_GUI);
-	
+	render::specialties::FontRenderer fontRender(directories::resources::fonts::DIR_AGEO, 128, directories::resources::shaders::DIR_GUI);
+	//fontRender.SaveSentance(render::specialties::FontRenderer::SAVED_SENTANCE::SAVED_HELLOWORLD, "hello world sentance");
 
 
 	//
@@ -190,8 +172,9 @@ int main()
 		//
 		///
 		//
-		//					string to render   2d starting position   2d rotation mat
-		fontRendere.render("Hello font world", glm::vec2(0, 0), glm::mat2(cos(0), -sin(0), sin(0), cos(0)));
+		//			
+		fontRender.render("Regular render", glm::vec2(0.5, -0.5), glm::vec3(0, 0, 0), glm::vec3(0.2, 0.2, 0.2));
+		//fontRender.renderSaved(render::specialties::FontRenderer::SAVED_SENTANCE::SAVED_HELLOWORLD, glm::vec2(0, 0), glm::vec3(0, 0, 0), glm::vec3(1, 1, 1));
 		//
 		///
 		//

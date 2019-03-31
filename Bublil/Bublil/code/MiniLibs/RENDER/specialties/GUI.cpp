@@ -4,9 +4,10 @@
 
 static bool InitTexture(const std::string& filename, GLuint& tex);
 
-render::specialties::GUI::GUI(const std::string& texfile, const glm::vec2& position, const glm::vec2& scale)
+render::specialties::GUI::GUI(const std::string& texfile, const glm::vec2& position, const glm::vec3& rotation, const glm::vec2& scale)
 {
 	m_position = position;
+	m_rotation = rotation;
 	m_scale = scale;
 	if(!InitTexture(texfile, m_texture))
 		std::cout<<"[Error] : image information failed to load for file: " << texfile << std::endl; 
